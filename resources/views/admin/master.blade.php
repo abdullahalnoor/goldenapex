@@ -23,6 +23,8 @@
   <link href="{{ asset('admin') }}/assets/css/icons.css" rel="stylesheet" type="text/css"/>
   <!-- Sidebar CSS-->
   <link href="{{ asset('admin') }}/assets/css/sidebar-menu.css" rel="stylesheet"/>
+  <link href="{{ asset('admin') }}/assets/css/select2.min.css" rel="stylesheet"/>
+
   <!-- Custom Style-->
   <link href="{{ asset('admin') }}/assets/css/app-style.css" rel="stylesheet"/>
   <link href="{{ asset('admin') }}/assets/css/select2.min.css" rel="stylesheet"/>
@@ -93,10 +95,11 @@
   <script src="{{ asset('admin') }}/assets/plugins/bootstrap-datatable/js/buttons.colVis.min.js"></script>
   <script src="{{ asset('admin') }}/assets/plugins/bootstrap-datatable/js/buttons.colVis.min.js"></script>
   <script src="{{ asset('admin') }}/assets/plugins/jquery-validation/js/jquery.validate.min.js"></script>
+  <script src="{{ asset('admin') }}/assets/js/select2.min.js"></script>
 
     <!--Form Validatin Script-->
     <script src="{{ asset('admin') }}/assets/plugins/jquery-validation/js/jquery.validate.min.js"></script>
-    <script>
+   
     <script>
      $(document).ready(function() {
       //Default data table

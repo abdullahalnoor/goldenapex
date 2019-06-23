@@ -52,9 +52,9 @@
                       <thead>
                           <tr class="text-center">                  
                             <th>Item Name</th>
-                            <th>In</th>
-                            <th>Out</th>
-                            <th>Stock</th>
+                            <th>In Qty</th>
+                            <th>Out Qty</th>
+                            <th>Stock Qty</th>
                           </tr>
                       </thead>
                 
@@ -66,9 +66,10 @@
                       @endforeach
                     </td>
                     
-                <td>{{ $child->purchase_qty }}</td>
+                <td>{{ $child->purchase_qty + $child->sell_qty }}</td>
                 <td>{{ $child->sell_qty }}</td>
-                @php( $totalStock = $child->purchase_qty  - $child->sell_qty )
+                @php( $totalStock = $child->purchase_qty  + $child->sell_qty )
+                @php( $totalStock -= $child->sell_qty )
                 <td>{{ $totalStock }}</td>
               </tr>
                 @endforeach
