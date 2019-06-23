@@ -40,7 +40,7 @@
                                             <div class="form-group row">
                                                 <label for="customer_id" class="col-sm-4 col-form-label">customer : <i class="text-danger">*</i> </label>
                                                 <div class="col-sm-8">
-                                                    <select class="form-control" id="customer_id" name="customer_id" tabindex="3">
+                                                    <select class="form-control select2" id="customer_id" name="customer_id" tabindex="3">
                                                         <option value="">--Select One--</option>
                                                         @foreach ($customer_info as $customer)
                                                         <option value="{{$customer->id}}" {{$customer->id == $invoice->customer_id ? 'selected' : ''}}>{{$customer->customer_name}}</option>
@@ -67,7 +67,7 @@
                                                     <div class="form-group row">
                                                         <label for="payment_type" class="col-sm-4 col-form-label">Payment Type : </label>
                                                         <div class="col-sm-8">
-                                                            <select class="form-control" id="payment_type" name="payment_type" >
+                                                            <select class="form-control select2" id="payment_type" name="payment_type" >
                                                                 <option value="">Select One</option>                                          
                                                                 <option value="Due" {{$invoice->payment_type == 'Due' ? 'selected' : ''}}>Due </option>
                                                                 <option value="Paid" {{$invoice->payment_type == 'Paid' ? 'selected' : ''}}>Paid</option>
@@ -79,7 +79,7 @@
                                                     <div class="form-group row">
                                                         <label for="unit" class="col-sm-4 col-form-label">Status : <i class="text-danger">*</i> </label>
                                                         <div class="col-sm-8">
-                                                            <select class="form-control" id="unit" name="status" >
+                                                            <select class="form-control select2" id="unit" name="status" >
                                                                 <option value="">Select One</option>                                          
                                                                 <option value="1" {{$invoice->status == 1 ? 'selected' : ''}}>Active</option>
                                                                 <option value="0" {{$invoice->status == 'Due' ? 'selected' : ''}}>Deactive</option>

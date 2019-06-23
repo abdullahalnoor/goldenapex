@@ -101,7 +101,12 @@
     <script src="{{ asset('admin') }}/assets/plugins/jquery-validation/js/jquery.validate.min.js"></script>
    
     <script>
+      $(document).ready(function() {
+        $('.select2').select2();
+    });
      $(document).ready(function() {
+
+
       //Default data table
        $('#default-datatable').DataTable();
 

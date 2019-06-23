@@ -39,7 +39,7 @@
                                             <div class="form-group row">
                                                 <label for="category_id" class="col-sm-4 col-form-label">Category : </label>
                                                 <div class="col-sm-8">
-                                                    <select class="form-control" id="category_id" name="category_id" tabindex="3">
+                                                    <select class="form-control select2" id="category_id" name="category_id" tabindex="3">
                                                         @foreach ($categories as $item)
                                                         <option value="{{$item->id}}" {{$product->category_id == $item->id ? 'selected' :''}}>{{$item->category_name}}</option>
                                                         @endforeach
@@ -91,7 +91,7 @@
                                             <div class="form-group row">
                                                 <label for="unit" class="col-sm-4 col-form-label">Status : </label>
                                                 <div class="col-sm-8">
-                                                    <select class="form-control" id="unit" name="status" >
+                                                    <select class="form-control select2" id="unit" name="status" >
                                                                                              
                                                         <option value="1" {{$product->status == 1 ? 'selected' : ''}} >Active</option>
                                                         <option value="0" {{$product->status == 0 ? 'selected' : ''}}>Deactive</option>

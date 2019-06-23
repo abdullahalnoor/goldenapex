@@ -40,7 +40,7 @@
                                             <div class="form-group row">
                                                 <label for="supplier_id" class="col-sm-4 col-form-label">Supplier : </label>
                                                 <div class="col-sm-8">
-                                                    <select class="form-control" id="supplier_id" name="supplier_id" tabindex="3">
+                                                    <select class="form-control select2" id="supplier_id" name="supplier_id" tabindex="3">
                                                         <option value="">--Select One--</option>
                                                         @foreach ($suppliers as $supplier)
                                                         <option value="{{$supplier->id}}">{{$supplier->name}}</option>
@@ -66,7 +66,7 @@
                                                     <div class="form-group row">
                                                         <label for="payment_type" class="col-sm-4 col-form-label">Payment Type : </label>
                                                         <div class="col-sm-8">
-                                                            <select class="form-control" id="payment_type" name="payment_type" >
+                                                            <select class="form-control select2" id="payment_type" name="payment_type" >
                                                                 <option value="">Select One</option>                                          
                                                                 <option value="Due">Due </option>
                                                                 <option value="Paid">Paid</option>
@@ -78,7 +78,7 @@
                                                     <div class="form-group row">
                                                         <label for="status" class="col-sm-4 col-form-label">Status : </label>
                                                         <div class="col-sm-8">
-                                                            <select class="form-control" id="status" name="status" >
+                                                            <select class="form-control select2" id="status" name="status" >
                                                                 <option value="">Select One</option>                                          
                                                                 <option value="1">Active</option>
                                                                 <option value="0">Deactive</option>
@@ -94,7 +94,7 @@
                                                     <div class="form-group row">
                                                         <label for="unit" class="col-sm-4 col-form-label">Sotre : </label>
                                                         <div class="col-sm-8">
-                                                            <select class="form-control" id="inventory_id" name="inventory_id" >
+                                                            <select class="form-control select2" id="inventory_id" name="inventory_id" >
                                                                 <option value="">Select One</option>                                          
                                                                 @foreach ($locations as $location)
                                                                 <option value="{{$location->id}}">{{$location->name}}</option>
@@ -108,7 +108,7 @@
                                                     <div class="form-group row">
                                                         <label for="unit" class="col-sm-4 col-form-label">Godown : </label>
                                                         <div class="col-sm-8">
-                                                            <select class="form-control" id="godown_id" name="godown_id" >
+                                                            <select class="form-control select2" id="godown_id" name="godown_id" >
                                                                 <option value="">Select One</option>                                          
                                                                 @foreach ($godowns as $godown)
                                                                 <option value="{{$godown->id}}">{{$godown->name}}</option>
@@ -162,7 +162,7 @@
                         <tbody id="table">
                             <tr>
                                 <td class="span3 supplier">
-                                        <select class="form-control products_id" id="products_id_0" name="products_id[]" >
+                                        <select class="form-control  select2 products_id" id="products_id_0" name="products_id[]" >
                                                 <option value="">Select One</option>                                          
                                                 @foreach ($products as $product)
                                                 <option value="{{$product->id}}">{{$product->product_name}}</option>
@@ -262,7 +262,7 @@ $(document).on("click","#addInput",function(e){
       $('#table').append(
                         '<tr>'+
                                 '<td class="span3 supplier">'+
-                                       '<select class="form-control products_id" id="products_id_'+max+'" name="products_id[]" >'+
+                                       '<select class="form-control select2 products_id" id="products_id_'+max+'" name="products_id[]" >'+
                                                 '<option value="">Select One</option>' +                                         
                                                 '@foreach ($products as $product)'+
                                                 '<option value="{{$product->id}}">{{$product->product_name}}</option>'+
