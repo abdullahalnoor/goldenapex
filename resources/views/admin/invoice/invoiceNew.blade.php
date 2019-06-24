@@ -40,7 +40,7 @@
                                             <div class="form-group row">
                                                 <label for="customer_id" class="col-sm-4 col-form-label">customer :  <i class="text-danger">*</i></label>
                                                 <div class="col-sm-8">
-                                                    <select class="form-control select2" id="customer_id" name="customer_id" tabindex="3">
+                                                    <select class="form-control select2" id="customer_id" name="customer_id" tabindex="3" required="">
                                                         <option value="">--Select One--</option>
                                                         @foreach ($customer_info as $customer)
                                                         <option value="{{$customer->id}}">{{$customer->customer_name}}</option>
@@ -53,7 +53,7 @@
                                             <div class="form-group row">
                                                 <label for="date" class="col-sm-4 col-form-label">Sell Date :  <i class="text-danger">*</i></label>
                                                 <div class="col-sm-8">
-                                                    <input type="date"  class="form-control"name="date"    />
+                                                    <input type="date"  class="form-control"name="date"   required="" />
                                                 </div>
                                             </div>
                                         </div>
@@ -96,7 +96,7 @@
                                             <div class="form-group row">
                                                 <label for="invoice_details" class="col-sm-2 col-form-label">Invoice Details : <i class="text-danger">*</i> </label>
                                                 <div class="col-sm-10">
-                                                    <textarea name="invoice_details" id="purchase_details" class="form-control" rows="4"></textarea>
+                                                    <textarea name="invoice_details" id="purchase_details" class="form-control" rows="4" required=""></textarea>
                                                 </div>
                                             </div> 
                                         </div>
@@ -179,7 +179,7 @@
                         <tbody id="table">
                             <tr>
                                 <td class="span3 supplier">
-                                        <select class="form-control select2 products_id" required id="products_id_0" name="products_id[]" >
+                                        <select class="form-control select2 products_id" required id="products_id_0" name="products_id[]" required="">
                                                 <option value="">Select One</option>                                          
                                                 @foreach ($products as $product)
                                                 <option value="{{$product->id}}">{{$product->product_name}}</option>
@@ -191,10 +191,10 @@
                                         <input type="text" id="available_quantity_0"  class="form-control text-right stock_ctn_1" placeholder="0.00" readonly="" autocomplete="off">
                                     </td>
                                     <td class="text-right">
-                                        <input type="text" name="product_quantity[]" required id="cartoon_1" class="form-control quantity text-right "  placeholder="0.00" value="" min="0" tabindex="6" autocomplete="off">
+                                        <input type="text" name="product_quantity[]" required id="cartoon_1" class="form-control quantity text-right "  placeholder="0.00" value="" min="0" tabindex="6" autocomplete="off" required="">
                                     </td>
                                     <td class="test">
-                                        <input type="text" name="product_rate[]" required id="product_rate_1" class="form-control  product_rate text-right" placeholder="0.00" value="" min="0" tabindex="7" autocomplete="off">
+                                        <input type="text" name="product_rate[]" required id="product_rate_1" class="form-control  product_rate text-right" placeholder="0.00" value="" min="0" tabindex="7" autocomplete="off" required="">
                                     </td>
                                    
 
@@ -339,7 +339,7 @@ $(document).on("click","#addInput",function(e){
       $('#table').append(
                         '<tr>'+
                                 '<td class="span3 supplier">'+
-                                       '<select class="form-control select2 products_id" id="products_id_'+max+'" name="products_id[]" required>'+
+                                       '<select class="form-control  products_id" id="products_id_'+max+'" name="products_id[]" required>'+
                                                 '<option value="">Select One</option>' +                                         
                                                 '@foreach ($products as $product)'+
                                                 '<option value="{{$product->id}}">{{$product->product_name}}</option>'+
@@ -363,9 +363,28 @@ $(document).on("click","#addInput",function(e){
                                     '</td>'+
                             '</tr>'
       );
+
+    //   var total = 0;
+        // $("#table").each(function() {
+        // // Sum only if the text entered is number and greater than 0
+        //     // $(this).children().children().children().css('background-color','red');
+
+        //     for(var i = 0; i <= max; i++){
+        //     var input = $(this).children().children()[0];
+        //    input =  $(input).children()[i];
+        //    input =  $(input).css('background-color','red');
+        //    input =  $(input).addClass('select2');
+        //     console.log(input);
+        //     }
+            
+        // });
+        
+
+
     max ++;
    
 })
+
     
   function  fetchProductInfo(val = null,id = null){
         var inventory_id = $("#inventory_id").val();

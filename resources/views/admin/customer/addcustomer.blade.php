@@ -36,21 +36,21 @@
                        	<div class="form-group row">
                             <label for="email" class="col-sm-3 col-form-label">Customer Email</label>
                             <div class="col-sm-6">
-                                <input class="form-control" name ="email" id="email" type="email" placeholder="Customer Email" tabindex="2"> 
+                                <input class="form-control" name ="email" id="email" type="email" placeholder="Customer Email" tabindex="2" required=""> 
                             </div>
                         </div>
 
                         <div class="form-group row">
                             <label for="mobile" class="col-sm-3 col-form-label">Customer Mobile</label>
                             <div class="col-sm-6">
-                                <input class="form-control" name ="mobile" id="mobile" type="text" placeholder="Customer Mobile" min="0" tabindex="3">
+                                <input class="form-control" name ="mobile" id="mobile" type="text" placeholder="Customer Mobile" min="0" tabindex="3" required="">
                             </div>
                         </div>
 
                         <div class="form-group row">
                             <label for="address " class="col-sm-3 col-form-label">Customer Address</label>
                             <div class="col-sm-6">
-                                <textarea class="form-control" name="address" id="address " rows="3" placeholder="Customer Address" tabindex="4"></textarea>
+                                <textarea class="form-control" name="address" id="address " rows="3" placeholder="Customer Address" tabindex="4" required=""></textarea>
                             </div>
                         </div>
                     <!--  <div class="form-group row">
@@ -65,7 +65,7 @@
                         <div class="form-group row">
                             <label for="previous_balance" class="col-sm-3 col-form-label">Previous Credit Balance</label>
                             <div class="col-sm-6">
-                                <input class="form-control" name="previous_balance" id="previous_balance" type="text" placeholder="Previous Credit Balance" tabindex="5">
+                                <input class="form-control" name="previous_balance" id="previous_balance" type="text" placeholder="Previous Credit Balance" tabindex="5" required="">
                             </div>
                         </div> 
 					<div class="form-group row">

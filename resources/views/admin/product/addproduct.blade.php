@@ -39,7 +39,8 @@
                                             <div class="form-group row">
                                                 <label for="category_id" class="col-sm-4 col-form-label">Category : </label>
                                                 <div class="col-sm-8">
-                                                    <select class="form-control select2" id="category_id" name="category_id" tabindex="3">
+                                                    <select class="form-control select2" id="category_id" name="category_id" tabindex="3" required="">
+                                                            <option >--Select One--</option>
                                                         @foreach ($categories as $item)
                                                         <option value="{{$item->id}}">{{$item->category_name}}</option>
                                                         @endforeach
@@ -51,7 +52,7 @@
                                             <div class="form-group row">
                                                 <label for="product_name" class="col-sm-4 col-form-label">Product Name : </label>
                                                 <div class="col-sm-8">
-                                                    <input type="text"  class="form-control"name="product_name" placeholder="Product Name"   />
+                                                    <input type="text"  class="form-control"name="product_name" placeholder="Product Name" required=""  />
                                                 </div>
                                             </div>
                                         </div>

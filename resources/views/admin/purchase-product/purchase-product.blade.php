@@ -38,9 +38,9 @@
             <div class="row">
                                         <div class="col-sm-6">
                                             <div class="form-group row">
-                                                <label for="supplier_id" class="col-sm-4 col-form-label">Supplier : </label>
+                                                <label for="supplier_id" class="col-sm-4 col-form-label">Supplier : <i class="text-danger">*</i> </label>
                                                 <div class="col-sm-8">
-                                                    <select class="form-control select2" id="supplier_id" name="supplier_id" tabindex="3">
+                                                    <select class="form-control select2" id="supplier_id" name="supplier_id" tabindex="3" required="">
                                                         <option value="">--Select One--</option>
                                                         @foreach ($suppliers as $supplier)
                                                         <option value="{{$supplier->id}}">{{$supplier->name}}</option>
@@ -51,9 +51,9 @@
                                         </div>
                                         <div class="col-sm-6">
                                             <div class="form-group row">
-                                                <label for="purchase_date" class="col-sm-4 col-form-label">Purchase Date : </label>
+                                                <label for="purchase_date" class="col-sm-4 col-form-label">Purchase Date : <i class="text-danger">*</i></label>
                                                 <div class="col-sm-8">
-                                                    <input type="date"  class="form-control"name="purchase_date"    />
+                                                    <input required="" type="date"  class="form-control"name="purchase_date"   required="" />
                                                 </div>
                                             </div>
                                         </div>
@@ -138,7 +138,7 @@
                                                 <div class="form-group row">
                                                     <label for="purchase_details" class="col-sm-2 col-form-label">Purchase Details : <i class="text-danger">*</i> </label>
                                                     <div class="col-sm-10">
-                                                        <textarea name="purchase_details" id="purchase_details" class="form-control" rows="4"></textarea>
+                                                        <textarea name="purchase_details" id="purchase_details" class="form-control" rows="4" required=""></textarea>
                                                     </div>
                                                 </div> 
                                             </div>
@@ -162,7 +162,7 @@
                         <tbody id="table">
                             <tr>
                                 <td class="span3 supplier">
-                                        <select class="form-control  select2 products_id" id="products_id_0" name="products_id[]" >
+                                        <select class="form-control  select2 products_id" id="products_id_0" name="products_id[]" required="">
                                                 <option value="">Select One</option>                                          
                                                 @foreach ($products as $product)
                                                 <option value="{{$product->id}}">{{$product->product_name}}</option>
@@ -174,10 +174,10 @@
                                         <input type="text" id="available_quantity_0" class="form-control text-right stock_ctn_1" placeholder="0.00" readonly="" autocomplete="off">
                                     </td>
                                     <td class="text-right">
-                                        <input type="text" name="product_quantity[]" id="cartoon_1" class="form-control quantity text-right "  placeholder="0.00" value="" min="0" tabindex="6" autocomplete="off">
+                                        <input required="" type="text" name="product_quantity[]" id="cartoon_1" class="form-control quantity text-right "  placeholder="0.00" value="" min="0" tabindex="6" autocomplete="off">
                                     </td>
                                     <td class="test">
-                                        <input type="text" name="product_rate[]"  id="product_rate_1" class="form-control  product_rate text-right" placeholder="0.00" value="" min="0" tabindex="7" autocomplete="off">
+                                        <input required="" type="text" name="product_rate[]"  id="product_rate_1" class="form-control  product_rate text-right" placeholder="0.00" value="" min="0" tabindex="7" autocomplete="off">
                                     </td>
                                    
 
@@ -228,7 +228,7 @@
 
                 <div class="form-group row">
                     <div class="col-sm-6">
-                        <input type="submit" id="add_purchase" class="btn btn-primary btn-large" value="Submit" autocomplete="off">
+                        <input type="submit"  id="add_purchase" class="btn btn-primary btn-large" value="Submit" autocomplete="off">
                      </div>
                 </div>
             </form>
@@ -262,7 +262,7 @@ $(document).on("click","#addInput",function(e){
       $('#table').append(
                         '<tr>'+
                                 '<td class="span3 supplier">'+
-                                       '<select class="form-control select2 products_id" id="products_id_'+max+'" name="products_id[]" >'+
+                                       '<select class="form-control select2 products_id" id="products_id_'+max+'" name="products_id[]" required >'+
                                                 '<option value="">Select One</option>' +                                         
                                                 '@foreach ($products as $product)'+
                                                 '<option value="{{$product->id}}">{{$product->product_name}}</option>'+
@@ -276,10 +276,10 @@ $(document).on("click","#addInput",function(e){
                                         '<input type="text" name="product_quantity[]" id="cartoon_1" class="form-control quantity text-right "  placeholder="0.00" value="" min="0" tabindex="6" autocomplete="off">'+
                                     '</td>'+
                                    ' <td class="test">'+
-                                        '<input type="text" name="product_rate[]"  id="product_rate_1" class="form-control  product_rate text-right" placeholder="0.00" value="" min="0" tabindex="7" autocomplete="off">'+
+                                        '<input required type="text" name="product_rate[]"  id="product_rate_1" class="form-control  product_rate text-right" placeholder="0.00" value="" min="0" tabindex="7" autocomplete="off">'+
                                     '</td> ' +  
                                     '<td class="text-right">'+
-                                       ' <input class="form-control total_price text-right" type="text" name="total_price[]" id="total_price_1" value="0.00" readonly="readonly" autocomplete="off">'+
+                                       ' <input required class="form-control total_price text-right" type="text" name="total_price[]" id="total_price_1" value="0.00" readonly="readonly" autocomplete="off">'+
                                     '</td>'+
                                     '<td>'+
                                         '<button style="text-align: right;" class="btn btn-danger removeInputs red" type="button" value="Delete"   tabindex="8" autocomplete="off">Delete</button>'+

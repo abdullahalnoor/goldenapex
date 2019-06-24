@@ -15,7 +15,7 @@ class CreateProductPurchasesTable extends Migration
     {
         Schema::create('product_purchases', function (Blueprint $table) {
             $table->increments('id');
-            $table->string('challan_no');
+            $table->string('challan_no')->nullable();
             $table->integer('supplier_id');
             $table->integer('purchase_invoice_no');
             $table->float('grand_total_amount');

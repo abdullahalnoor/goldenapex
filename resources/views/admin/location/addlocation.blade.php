@@ -40,7 +40,7 @@
                                             <div class="form-group row">
                                                 <label for="name" class="col-sm-2 col-form-label">Store Name : </label>
                                                 <div class="col-sm-6">
-                                                    <input type="text"  class="form-control"name="name" placeholder="Store Name"   />
+                                                    <input type="text"  class="form-control"name="name" placeholder="Store Name" required=""  />
                                                 </div>
                                             </div>
                                         </div>
@@ -63,7 +63,7 @@
                                             <div class="form-group row">
                                                 <label for="address" class="col-sm-2 col-form-label">Address  : <i class="text-danger">*</i> </label>
                                                 <div class="col-sm-6">
-                                                    <textarea class="form-control " cols="30"  rows="5" name="address" type="text" ></textarea>
+                                                    <textarea class="form-control " cols="30"  rows="5" name="address" type="text" required="" ></textarea>
                                                 </div>
                                             </div> 
                                         </div>
@@ -73,7 +73,7 @@
                                             <div class="form-group row">
                                                 <label for="unit" class="col-sm-2 col-form-label">Status : </label>
                                                 <div class="col-sm-6">
-                                                    <select class="form-control" id="unit" name="status" >
+                                                    <select class="form-control" id="unit" name="status" required="">
                                                         <option value="">Select One</option>                                          
                                                         <option value="1">Active</option>
                                                         <option value="0">Deactive</option>
