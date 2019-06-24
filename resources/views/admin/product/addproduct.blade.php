@@ -37,7 +37,7 @@
                                     <div class="row">
                                         <div class="col-sm-6">
                                             <div class="form-group row">
-                                                <label for="category_id" class="col-sm-4 col-form-label">Category : </label>
+                                                <label for="category_id" class="col-sm-4 col-form-label">Category : <i class="text-danger">*</i> </label>
                                                 <div class="col-sm-8">
                                                     <select class="form-control select2" id="category_id" name="category_id" tabindex="3" required="">
                                                             <option >--Select One--</option>
@@ -50,7 +50,7 @@
                                         </div>
                                         <div class="col-sm-6">
                                             <div class="form-group row">
-                                                <label for="product_name" class="col-sm-4 col-form-label">Product Name : </label>
+                                                <label for="product_name" class="col-sm-4 col-form-label">Product Name : <i class="text-danger">*</i> </label>
                                                 <div class="col-sm-8">
                                                     <input type="text"  class="form-control"name="product_name" placeholder="Product Name" required=""  />
                                                 </div>
@@ -62,7 +62,7 @@
                                     <div class="row">
                                         <div class="col-sm-6">
                                             <div class="form-group row">
-                                                <label for="product_code" class="col-sm-4 col-form-label">Product Code : </label>
+                                                <label for="product_code" class="col-sm-4 col-form-label">Product Code : <i class="text-danger">*</i>  </label>
                                                 <div class="col-sm-8">
                                                     <input type="text"  class="form-control"  name="product_code" placeholder="Product Code "  required />
                                                 </div>
@@ -70,7 +70,7 @@
                                         </div>
                                         <div class="col-sm-6">
                                             <div class="form-group row">
-                                                <label for="purchase_price" class="col-sm-4 col-form-label">Purchase Price: </label>
+                                                <label for="purchase_price" class="col-sm-4 col-form-label">Purchase Price: <i class="text-danger">*</i> </label>
                                                 <div class="col-sm-8">
                                                     <input type="text" class="form-control"  name="purchase_price" placeholder="Purchase Price"  required />
                                                 </div>
@@ -88,7 +88,7 @@
                                         </div>
                                         <div class="col-sm-6">
                                             <div class="form-group row">
-                                                <label for="unit" class="col-sm-4 col-form-label">Status : </label>
+                                                <label for="unit" class="col-sm-4 col-form-label">Status : <i class="text-danger">*</i> </label>
                                                 <div class="col-sm-8">
                                                     <select class="form-control select2" id="unit" name="status" >
                                                         <option value="">Select One</option>                                          
@@ -119,3 +119,4 @@
 
 <!-- Add Product End -->
 @endsection
+

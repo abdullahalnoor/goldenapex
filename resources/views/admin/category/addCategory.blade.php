@@ -25,7 +25,7 @@
 			      	<div class="col-sm-2" role="alert"></div>
              	</div>
 				<div class="form-group row">
-					<label for="input-4" class="col-sm-2 col-form-label">Category Name :</label>
+					<label for="input-4" class="col-sm-2 col-form-label">Category Name : <i class="text-danger">*</i> </label>
 					<div class="col-sm-6">
 						<input type="text" class="form-control" id="input-4" required="" name="categoryName" placeholder="Enter category name">
 					</div>

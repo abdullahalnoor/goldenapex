@@ -36,7 +36,7 @@
                         <div class="form-group row">
                             <label for="email" class="col-sm-3 col-form-label">Supplier Email : </label>
                             <div class="col-sm-6">
-                                <input class="form-control" name ="email" id="email" type="email" placeholder="Supplier Email"  required="" tabindex="2">
+                                <input class="form-control" name ="email" id="email" type="email" placeholder="Supplier Email"   tabindex="2">
                             </div>
                         </div>
                        	<div class="form-group row">
@@ -55,7 +55,7 @@
                        <div class="form-group row">
                             <label for="previous_due" class="col-sm-3 col-form-label">Previous Due : </label>
                             <div class="col-sm-6">
-                                <input class="form-control" name="previous_due" id="previous_due" type="number" placeholder="Previous Due" tabindex="6"  required="">
+                                <input class="form-control" name="previous_due" id="previous_due" type="number" placeholder="Previous Due" tabindex="6"  >
                             </div>
                         </div> 
 
