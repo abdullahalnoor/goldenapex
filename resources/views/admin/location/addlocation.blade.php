@@ -38,7 +38,7 @@
                                     
                                         <div class="col-sm-12">
                                             <div class="form-group row">
-                                                <label for="name" class="col-sm-2 col-form-label">Store Name : </label>
+                                                <label for="name" class="col-sm-2 col-form-label">Store Name : <i class="text-danger">*</i></label>
                                                 <div class="col-sm-6">
                                                     <input type="text"  class="form-control"name="name" placeholder="Store Name" required=""  />
                                                 </div>
@@ -51,7 +51,7 @@
                                       
                                         <div class="col-sm-12">
                                             <div class="form-group row">
-                                                <label for="mobile" class="col-sm-2 col-form-label">Mobile : </label>
+                                                <label for="mobile" class="col-sm-2 col-form-label">Mobile : <i class="text-danger">*</i></label>
                                                 <div class="col-sm-6">
                                                     <input type="text" class="form-control"  name="mobile" placeholder="Mobile "  required />
                                                 </div>
@@ -73,7 +73,7 @@
                                             <div class="form-group row">
                                                 <label for="unit" class="col-sm-2 col-form-label">Status : </label>
                                                 <div class="col-sm-6">
-                                                    <select class="form-control" id="unit" name="status" required="">
+                                                    <select class="form-control" id="unit" name="status" >
                                                         <option value="">Select One</option>                                          
                                                         <option value="1">Active</option>
                                                         <option value="0">Deactive</option>

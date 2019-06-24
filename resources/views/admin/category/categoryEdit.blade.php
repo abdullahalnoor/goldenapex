@@ -16,14 +16,14 @@
                   		</div>
              		</div>
 					<div class="form-group row">
-					  <label for="input-4" class="col-sm-2 col-form-label">Category Name :</label>
+					  <label for="input-4" class="col-sm-2 col-form-label">Category Name : <i class="text-danger">*</i></label>
 					  <div class="col-sm-6">
 						<input type="text" class="form-control" id="input-4" name="categoryName" value="{{ $category->category_name }}">
 					  </div>
 					</div>
 
 					<div class="form-group row">
-					  <label for="input-4" class="col-sm-2 col-form-label">Status :</label>
+					  <label for="input-4" class="col-sm-2 col-form-label">Status : <i class="text-danger">*</i></label>
 					  <div class="col-sm-6">
 						<select name="status" class="form-control">
 							<option value="1">Active</option>

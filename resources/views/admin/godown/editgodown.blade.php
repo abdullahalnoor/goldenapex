@@ -38,7 +38,7 @@
                                     
                                         <div class="col-sm-12">
                                             <div class="form-group row">
-                                                <label for="name" class="col-sm-2 col-form-label">Godown Name : </label>
+                                                <label for="name" class="col-sm-2 col-form-label">Godown Name : <i class="text-danger">*</i></label>
                                                 <div class="col-sm-6">
                                                     <input type="text"  class="form-control"name="name" value="{{$godown->name}}" />
                                                     <input type="hidden"  name="id" value="{{$godown->id}}" />
@@ -52,7 +52,7 @@
                                       
                                         <div class="col-sm-12">
                                             <div class="form-group row">
-                                                <label for="mobile" class="col-sm-2 col-form-label">Mobile : </label>
+                                                <label for="mobile" class="col-sm-2 col-form-label">Mobile : <i class="text-danger">*</i></label>
                                                 <div class="col-sm-6">
                                                     <input type="text" class="form-control"  name="mobile" value="{{$godown->mobile}}"  required />
                                                 </div>

@@ -6,7 +6,7 @@
        <i class="icon-menu menu-icon" style="color: black"></i>
      </a>
     </li><span style="margin-left: 180px;"></span>
-    <li class="nav-item pl-5">
+    {{-- <li class="nav-item pl-5">
         <a href="#" class="btn btn-outline-primary"><i class="ti-layout-accordion-list"></i> Invoice</a>
 
         <a href="#" class="btn btn-outline-primary"><i class="fa fa-money"></i> Receipt</a>
@@ -14,14 +14,14 @@
         <a href="#" class="btn btn-outline-primary"><i class="fa fa-paypal" aria-hidden="true"></i> Payment</a>
 
         <a href="#" class="btn btn-outline-primary"><i class="ti-shopping-cart"></i> Purchase</a>
-    </li>
+    </li> --}}
   </ul>
      
   <ul class="navbar-nav align-items-center right-nav-link">
 
     <li class="nav-item dropdown-lg">
       <a class="nav-link dropdown-toggle dropdown-toggle-nocaret waves-effect" data-toggle="dropdown" href="javascript:void();">
-	  <i class="icon-bell" style="color: black"></i><span class="badge badge-primary badge-up">10</span></a>
+	  {{-- <i class="icon-bell" style="color: black"></i><span class="badge badge-primary badge-up">10</span></a> --}}
       <div class="dropdown-menu dropdown-menu-right">
         <ul class="list-group list-group-flush">
           <li class="list-group-item d-flex justify-content-between align-items-center">
@@ -81,7 +81,7 @@
           </a>
         </li>
         <li class="dropdown-divider"></li>
-        <li class="dropdown-item"><i class="icon-settings mr-2"></i> Setting</li>
+        {{-- <li class="dropdown-item"><i class="icon-settings mr-2"></i> Setting</li> --}}
         <li class="dropdown-divider"></li>
         <li> <a class="dropdown-item" href="{{ route('logout') }}"
                                        onclick="event.preventDefault();

@@ -27,9 +27,9 @@
             <div class="col-sm-12">
                 <div class="column">
                     <a href="{{ url('/customer/add') }}" class="btn btn-info m-b-5 m-r-2"><i class="ti-plus"> </i> Add customer </a>
-                    <a href="{{ url('/customer/credit') }}" class="btn btn-primary m-b-5 m-r-2"><i class="ti-align-justify"> </i>  Credit Customer </a>
+                    {{-- <a href="{{ url('/customer/credit') }}" class="btn btn-primary m-b-5 m-r-2"><i class="ti-align-justify"> </i>  Credit Customer </a>
 
-                    <a href="{{ url('/customer/paid') }}" class="btn btn-warning m-b-5 m-r-2"><i class="ti-align-justify"> </i>  Paid Customer </a>
+                    <a href="{{ url('/customer/paid') }}" class="btn btn-warning m-b-5 m-r-2"><i class="ti-align-justify"> </i>  Paid Customer </a> --}}
 
                 </div>
             </div>

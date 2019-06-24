@@ -18,7 +18,7 @@ class CreateLocationsTable extends Migration
             $table->string('name');
             $table->string('mobile');
             $table->text('address');
-            $table->tinyInteger('status')->default(1);
+            $table->tinyInteger('status')->nullable();
             $table->timestamps();
         });
     }
