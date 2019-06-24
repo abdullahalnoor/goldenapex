@@ -94,7 +94,7 @@
                                                     <div class="form-group row">
                                                         <label for="unit" class="col-sm-4 col-form-label">Sotre : </label>
                                                         <div class="col-sm-8">
-                                                            <select class="form-control select2" id="inventory_id" name="inventory_id" >
+                                                            <select class="form-control " id="inventory_id" name="inventory_id" >
                                                                 <option value="">Select One</option>                                          
                                                                 @foreach ($locations as $location)
                                                                 <option value="{{$location->id}}">{{$location->name}}</option>
@@ -108,7 +108,7 @@
                                                     <div class="form-group row">
                                                         <label for="unit" class="col-sm-4 col-form-label">Godown : </label>
                                                         <div class="col-sm-8">
-                                                            <select class="form-control select2" id="godown_id" name="godown_id" >
+                                                            <select class="form-control " id="godown_id" name="godown_id" >
                                                                 <option value="">Select One</option>                                          
                                                                 @foreach ($godowns as $godown)
                                                                 <option value="{{$godown->id}}">{{$godown->name}}</option>
@@ -239,9 +239,7 @@
 
 @include('admin.purchase-product.alert')
 
-<div id="modal">
 
-</div>
   
 
 @push('script')
@@ -290,7 +288,7 @@ $(document).on("click","#addInput",function(e){
    
 })
     
-  function  fetchProductInfo(val = null,id = null){
+  function  fetchProductInfo(val = null,id = null,e){
         var inventory_id = $("#inventory_id").val();
         var inventory = $("#inventory_id").attr("id");
         var godown_id = $("#godown_id").val();
@@ -301,13 +299,18 @@ $(document).on("click","#addInput",function(e){
 
         if(!isNaN(inventory_id) && !isNaN(godown_id)){
             if(inventory_id.length != 0 && godown_id.length != 0){
+                
                
                 // $("#purchaseTable").load(location.href + " #table");
                 
                 $("#godown_id").val('');
                 $("#inventory_id").val('');
                 $("#alertMessage").modal("show");             
+            }else{
+                return false;
             }
+        }else{
+            return false;
         }
 
         if(inventory_id == '' && godown_id == ''){

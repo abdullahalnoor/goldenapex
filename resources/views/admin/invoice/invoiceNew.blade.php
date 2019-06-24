@@ -114,7 +114,7 @@
                                                         <div class="form-group row">
                                                             <label for="unit" class="col-sm-4 col-form-label">Sotre : </label>
                                                             <div class="col-sm-8">
-                                                                <select class="form-control select2" id="inventory_id" name="inventory_id" >
+                                                                <select class="form-control " id="inventory_id" name="inventory_id" >
                                                                     <option value="">Select One</option>                                          
                                                                     @foreach ($locations as $location)
                                                                     <option value="{{$location->id}}">{{$location->name}}</option>
@@ -128,7 +128,7 @@
                                                         <div class="form-group row">
                                                             <label for="unit" class="col-sm-4 col-form-label">Godown : </label>
                                                             <div class="col-sm-8">
-                                                                <select class="form-control select2" id="godown_id" name="godown_id" >
+                                                                <select class="form-control " id="godown_id" name="godown_id" >
                                                                     <option value="">Select One</option>                                          
                                                                     @foreach ($godowns as $godown)
                                                                     <option value="{{$godown->id}}">{{$godown->name}}</option>
@@ -146,7 +146,7 @@
                                                         <div class="form-group row">
                                                             <label for="direct_sell" class="col-sm-4 col-form-label">Direct Sell : </label>
                                                             <div class="col-sm-8">
-                                                                <select class="form-control select2" id="direct_sell" name="direct_sell" >
+                                                                <select class="form-control " id="direct_sell" name="direct_sell" >
                                                                     <option value="">Select One</option>                                          
                                                                     <option value="1">Direct Sell</option>
                                                                 </select>
