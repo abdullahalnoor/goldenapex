@@ -50,7 +50,7 @@
       <li>
         <a href="javaScript:void();" class="waves-effect">
           <i class="ti-bag"></i>
-          <span>Item & Inventory</span> <i class="fa fa-angle-left pull-right"></i>
+          <span>Item </span> <i class="fa fa-angle-left pull-right"></i>
         </a>
         <ul class="sidebar-submenu">
         <li><a href="{{ url('/product/add') }}"><i class="fa fa-circle-o"></i> Add Item</a></li>
@@ -119,7 +119,7 @@
         <ul class="sidebar-submenu">
         <li><a href="{{ url('/godown/stock') }}"><i class="fa fa-circle-o"></i> Godown Wise Stock</a></li>
         <li><a href="{{ url('/store/stock') }}"><i class="fa fa-circle-o"></i> Store Wise Stock</a></li>
-        <li><a href="{{ url('/item/stock') }}"><i class="fa fa-circle-o"></i> Item Wise Stock</a></li>
+        {{-- <li><a href="{{ url('/item/stock') }}"><i class="fa fa-circle-o"></i> Item Wise Stock</a></li> --}}
         </ul>
       </li>
 

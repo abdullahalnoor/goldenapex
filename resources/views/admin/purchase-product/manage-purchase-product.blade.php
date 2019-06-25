@@ -67,9 +67,9 @@
                              
                              <td>
                                  <a class="btn btn-info btn-sm" target="_blank" href="{{ route('pdf.purchase.product',['id'=>$product->id,'type'=>'stream']) }}"><i style="font-size: 16px;" class="fa fa-file-pdf-o" data-toggle="tooltip" title="PDF"></i></a>  
-                                 <a class="btn btn-primary btn-sm" target="_blank" href="{{ route('pdf.purchase.product',['id'=>$product->id,'type'=>'downlaod']) }}"><i style="font-size: 16px;" class="fa fa-download" data-toggle="tooltip" title="Download"></i></a>  
+                                 {{-- <a class="btn btn-primary btn-sm" target="_blank" href="{{ route('pdf.purchase.product',['id'=>$product->id,'type'=>'downlaod']) }}"><i style="font-size: 16px;" class="fa fa-download" data-toggle="tooltip" title="Download"></i></a>   --}}
                                  <a class="btn btn-info btn-sm" href="{{ route('edit.purchase.product',$product->id) }}"><i style="font-size: 16px;" class="fa fa-edit" data-toggle="tooltip" title="Update"></i></a>  
-                                 <a class="btn btn-danger btn-sm "    href="{{ route('delete.purchase.product',$product->id) }}" ><i style="font-size: 16px;" class="fa fa-trash" data-toggle="tooltip" title="Delete"></i></a>
+                                 {{-- <a class="btn btn-danger btn-sm "    href="{{ route('delete.purchase.product',$product->id) }}" ><i style="font-size: 16px;" class="fa fa-trash" data-toggle="tooltip" title="Delete"></i></a> --}}
                             </td>
                            
                     </tr>

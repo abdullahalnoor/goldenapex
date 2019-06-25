@@ -288,7 +288,18 @@
 
     $().ready(function() {
 
-    $("#personal-info").validate();
+        
+        $('input.quantity').each(function() {
+                $(this).rules("add", 
+                    {
+                        required: true
+                    })
+            });   
+
+            event.preventDefault();
+            $("#insert_purchase").validate();
+
+    // $("#personal-info").validate();
 
 //    validate signup form on keyup and submit
     $("#insert_purchase").validate({

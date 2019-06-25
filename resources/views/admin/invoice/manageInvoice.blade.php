@@ -49,7 +49,7 @@
               <table id="default-datatable" class="table table-bordered">
                 <thead>
                     <tr class="text-center">
-                    	<th>Sl :</th>
+                    	<th>Invoice No</th>
                         <th>Customer Name</th>
                         <th>Date</th>
                         <th>Total Amount</th>
@@ -61,7 +61,7 @@
 
                 	@foreach($invoice as $row)
                     <tr class="text-center">
-                        <td>{{ ++$i }}</td>
+                        <td>{{ $row->sell_invoice_no }}</td>
                         <td> 
                             @foreach ($customer_info as $customer)
                             @if ($row->customer_id == $customer->id)
@@ -72,9 +72,10 @@
                         <td>{{ $row->date }}</td>
                         <td>{{ $row->total_amount }}</td>
                         <td>
-                                <a class="btn btn-info btn-sm" target="_blank" href="{{ route('pdf.invoice.product',['id'=>$row->id,'type'=>'stream']) }}"><i style="font-size: 16px;" class="fa fa-file-pdf-o" data-toggle="tooltip" title="PDF"></i></a>  
-                                 <a class="btn btn-primary btn-sm" target="_blank" href="{{ route('pdf.invoice.product',['id'=>$row->id,'type'=>'downlaod']) }}"><i style="font-size: 16px;" class="fa fa-download" data-toggle="tooltip" title="Download"></i></a>  
-                                  <a class="btn btn-info btn-sm" href="{{ url('/invoice/edit/'.$row->id) }}"><i style="font-size: 16px;" class="fa fa-edit" data-toggle="tooltip" title="Update"></i></a>   <a class="btn btn-danger btn-sm" href="{{ url('/invoice/delete/'.$row->id) }}"><i style="font-size: 16px;" class="fa fa-trash" data-toggle="tooltip" title="Delete"></i></a></td>
+                                <a class="btn btn-info btn-sm" target="_blank" href="{{ route('pdf.invoice.product',['id'=>$row->id,'type'=>'invoice']) }}"><i style="font-size: 16px;" class="fa fa-file-pdf-o" data-toggle="tooltip" title="Invoice"></i></a>  
+                                 <a class="btn btn-primary btn-sm" target="_blank" href="{{ route('pdf.invoice.product',['id'=>$row->id,'type'=>'challan']) }}"><i style="font-size: 16px;" class="fa fa-file-pdf-o" data-toggle="tooltip" title="Challan"></i></a>  
+                                  <a class="btn btn-info btn-sm" href="{{ url('/invoice/edit/'.$row->id) }}"><i style="font-size: 16px;" class="fa fa-edit" data-toggle="tooltip" title="Update"></i></a>   
+                                  {{-- <a class="btn btn-danger btn-sm" href="{{ url('/invoice/delete/'.$row->id) }}"><i style="font-size: 16px;" class="fa fa-trash" data-toggle="tooltip" title="Delete"></i></a></td> --}}
                     </tr>
                     @endforeach
                     <tr class="text-center">

@@ -5,8 +5,11 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title> {{str_replace(" ", "_", $suplier->name.'_'.'invoice')}} </title>
+    <title> {{str_replace(" ", "_", $suplier->name.'_'.'Purchase_Invoice_No_'.$product_purchase->purchase_invoice_no)}} </title>
     <style>
+    * {
+        font-size: 14px;
+    }
         table:nth-child(1) {
             font-family: arial, sans-serif;
             border-collapse: collapse;
@@ -36,14 +39,14 @@
         table:nth-child(2) th {
             border: 1px solid black;
             text-align: center;
-            padding: 8px;
+            padding: 2px;
         }
 
         table:nth-child(2) td {
             border-right: 1px solid black;
             border-left: 1px solid black;
             text-align: left;
-            padding: 8px;
+            padding: 2px;
             text-align: center;
         }
 
@@ -58,13 +61,13 @@
         table:nth-child(3) td {
             border: 1px solid black;
             text-align: left;
-            padding: 8px;
+            padding: 2px;
         }
 
         table:nth-child(3) td {
             border-right: 1px solid black;
             text-align: left;
-            padding: 8px;
+            padding: 2px;
             text-align: center;
         }
 
@@ -92,13 +95,12 @@
     <table>
         <tr>
             <td colspan="5">
-                <h1 style="margin-bottom: 5px;text-transform:uppercase;">comfort foam & mattress</h1>
+                <h1 style="margin-bottom: 5px;text-transform:uppercase;font-size:20px;">comfort foam & mattress</h1>
                 <address style="font-size:12px;">
-                    Address : Road Dhaka <br />
-                    E-mail : info@goldenapexbd.com <br />
-                    Website : www.goldenpaex.com <br /><br />
+                    Address : 68/69 CONCEPT TOWER ,GREEN ROAD,DHAKA-1205 <br />
+                  
                 </address>
-                <h4 style="text-transform:uppercase;margin-top: 5px">Purchase Invoice</h4>
+                <h4 style="text-transform:uppercase;margin-top: 5px;font-size:18px;">Purchase Invoice</h4>
             </td>
         </tr>
         <tr style="width:100%;text-align: center">
@@ -128,7 +130,7 @@
     <table>
         <tr>
             <th style="width: 5%;">Sl</th>
-            <th style="width: 40%;">Description of Goods </th>
+            <th style="width: 40%;">Item</th>
             <th style="width: 15%;">Queantiy</th>
             <th style="width: 15%;">Unit Price</th>
             <th style="width: 25%;">Amount</th>

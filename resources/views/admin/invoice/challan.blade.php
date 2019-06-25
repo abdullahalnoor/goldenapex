@@ -5,7 +5,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title> {{str_replace(" ", "_", $customer_info->customer_name.'_'.'Sell_Invoice_No'.'_'.$invoice->sell_invoice_no)}} </title>
+    <title> {{str_replace(" ", "_", $customer_info->customer_name.'_'.'Challan No'.'_'.$invoice->sell_invoice_no)}} </title>
     <style>
         * {
             font-size: 14px;
@@ -105,11 +105,11 @@
                                 Address : 68/69 CONCEPT TOWER ,GREEN ROAD,DHAKA-1205 <br />
                                
                             </address>
-                            <h4 style="text-transform:uppercase;margin-top: 5px;font-size:18px">Sell Invoice</h4>
+                            <h4 style="text-transform:uppercase;margin-top: 5px;font-size:18px"> Challan</h4>
                         </td>
                     </tr>
                     <tr style="width:100%;text-align: center">
-                        <td style="text-align: left">Invoice No : {{$invoice->sell_invoice_no}} </td>
+                        <td style="text-align: left">Challan No : {{$invoice->sell_invoice_no}} </td>
                         <td style="text-align: right" colspan="4">Date : {{date("d/m/Y")}} </td>
                     </tr>
                     <tr style="width:100%;text-align: center">
@@ -135,10 +135,9 @@
                 <table>
                     <tr>
                         <th style="width: 5%;">Sl</th>
-                        <th style="width: 40%;">Description of Goods </th>
+                        <th style="width: 40%;">Item </th>
                         <th style="width: 15%;">Queantiy</th>
-                        <th style="width: 15%;">Unit Price</th>
-                        <th style="width: 25%;">Amount</th>
+                       
                     </tr>
             
                     <tbody>
@@ -158,69 +157,16 @@
                             @endforeach
                         </td>
                           <td style="width: 15%;">{{$detail->quantity}}</td>
-                          <td style="width: 15%;">{{$detail->rate}}</td>
-                          <td style="width: 25%;">{{ $total = $detail->quantity * $detail->rate }}</td>
+                        
                       </tr>
-                      @php($subTotal += $total )
+                     
                     
                       @endforeach
                     </tbody>
             
             
                 </table>
-                <table>
-                    <tbody>
-            
-                        <tr>
-                            <td style="text-align: right" colspan="4">Sub Total :</td>
-                            <td>{{$subTotal}}</td>
-                        </tr>
-            
-                        <tr>
-                        
-                                <td style="text-align: right" colspan="4">Discount :</td>
-                           
-                                                    
-                            
-                            
-                                
-                                
-                                <td style="width: 25%;">{{round($invoice->total_discount,2)}}</td>
-                            </tr>
-            
-                            <tr>
-                        
-                                    <td style="text-align: right" colspan="4">Special Discount :</td>
-                                   
-                                                    
-                                   
-                                
-                                    
-                                    
-                                    <td style="width: 25%;">{{round($invoice->total_discount_two,2)}}</td>
-                                </tr>
-                                <tr>
-                        
-                                        <td style="text-align: right" colspan="1">Miscellaneous :</td>
-                                        <td style="text-align: right" colspan="3">{{$invoice->others_bill}}</td>
-                                       
-                                                        
-                                       
-                                    
-                                        
-                                        
-                                        <td style="width: 25%;">{{$invoice->others_price}}</td>
-                                    </tr> 
-                       
-                        
-                        <tr>
-                            <td style="text-align: right" colspan="4">Grand Total :</td>
-                            <td style="width: 25%;">{{ round($invoice->total_amount,2)}}</td>
-                        </tr>
-                     
-                    </tbody>
-                  
-                </table>
+              
     </main>
    
    <div style="position: fixed;bottom:50px;">

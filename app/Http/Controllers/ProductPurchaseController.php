@@ -645,7 +645,7 @@ class ProductPurchaseController extends Controller
         $pdf = PDF::loadView('admin.purchase-product.pdf',get_defined_vars())->setPaper('a4', 'vertical');
         
         if($type == 'stream'){
-            return $pdf->stream('invoice.pdf');
+            return $pdf->stream($suplier->name.'_'.'Purchase_Invoice_No_'.$product_purchase->purchase_invoice_no.'.pdf');
         }elseif($type == 'downlaod'){
             return $pdf->download('invoice.pdf');
         }
