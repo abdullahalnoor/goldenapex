@@ -135,7 +135,7 @@
                 <table>
                     <tr>
                         <th style="width: 5%;">Sl</th>
-                        <th style="width: 40%;">Description of Goods </th>
+                        <th style="width: 40%;">Item </th>
                         <th style="width: 15%;">Queantiy</th>
                         <th style="width: 15%;">Unit Price</th>
                         <th style="width: 25%;">Amount</th>
@@ -217,7 +217,11 @@
                             <td style="text-align: right" colspan="4">Grand Total :</td>
                             <td style="width: 25%;">{{ round($invoice->total_amount,2)}}</td>
                         </tr>
-                     
+                        <tr>
+                            <td style="text-align: right" >In Word :</td>
+                            <td  style="text-align: left;text-transform:capitalize"  colspan="4">  {{ $inWordTK}} Only</td>
+                        </tr>
+                        
                     </tbody>
                   
                 </table>

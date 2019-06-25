@@ -189,6 +189,14 @@
                 <td style="text-align: right" colspan="4">Grand Total :</td>
                 <td style="width: 25%;">{{ $product_purchase->grand_total_amount}}</td>
             </tr>
+
+
+            <tr>
+                <td style="text-align: right" >Grand Total :</td>
+                <td style="text-align: left;text-transform:capitalize;" colspan="4">{{ $inWorTk}} Only</td>
+            </tr>
+
+            
         </tbody>
     </table>
     </div>

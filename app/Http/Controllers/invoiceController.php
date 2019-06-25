@@ -396,10 +396,14 @@ private function numberTowords(float $number)
         // $inventoryId = invoice_details::where('invoice_id',$invoice->id)->first(['godown_id','inventory_id','direct_sell']);
         // return $inventoryId->direct_sell;
 
+        // $tot = (float) $invoice->total_amount;
+        // // return  $this->numberTowords($tot);
+        $inWordTK =  $this->numberTowords((float) $invoice->total_amount);
+        // // return $inWordTK;
+
         $pdf = PDF::loadView('admin.invoice.pdf',get_defined_vars())->setPaper('a4', 'vertical');
         $challan = PDF::loadView('admin.invoice.challan',get_defined_vars())->setPaper('a4', 'vertical');
-        $tot = (float) $invoice->total_amount;
-        return $this->numberTowords($tot);
+       
         
         if($type == 'invoice'){
             return $pdf->stream($customer_info->customer_name.'_'.'Sell_Invoice_No'.'_'.$invoice->sell_invoice_no.'.pdf');

@@ -89,6 +89,7 @@
                     </tr>
                 </tbody>
             </table>
+            {{$invoice->links()}}
             </div>
             </div>
           </div>
