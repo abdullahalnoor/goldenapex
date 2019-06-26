@@ -237,6 +237,12 @@
 
 $(document).ready(function(){
 
+    $.ajaxSetup({
+        headers: {
+            'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+        }
+    });
+
 
     function calculatePurchaseReturnTotal() {
     //Initialize total to 0
@@ -308,6 +314,53 @@ $(document).ready(function(){
          calculatePurchaseReturnTotal();
     
     });  
+
+
+
+   
+
+
+    var formErr = `  <div class="row" style="position:absolute;bottom:5px;width:50%;right:50px;">
+                    <div class="col-sm-12">
+                  
+                        <div class="alert alert-danger alert-dismissible" role="alert">
+                            <button type="button" class="close" data-dismiss="alert">&times;</button>
+                            <div class="text-center" style="font-size: 18px; padding: 9px; border: 2px solid red;">
+                            Please Fill Out Form Correctly...
+                            </div>
+                        </div>
+                    
+                    </div>
+                </div>`;
+
+    $(document).on("submit","#insertSellForm",function(e){
+        e.preventDefault();
+        var frmData = $(this).serialize();
+        $.ajax({
+            url:"{{url('/invoice/save')}}",
+            method:"POST",
+            data:frmData,
+        })
+        .done(function(data){
+            window.location.href = "{{url( '/invoice/manage')}}";
+        })
+        .fail(function(err){
+            $("#formErr").html(formErr);
+            setTimeout(function()  {
+                $("#formErr").empty();
+            }, 5000);
+        });
+    });
+
+
+
+
+
+
+
+
+
+
 
 
 

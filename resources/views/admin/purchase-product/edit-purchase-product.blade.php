@@ -153,7 +153,7 @@
                         <thead>
                              <tr>
                                  <th class="text-center" width="20%">Item code<i class="text-danger">*</i></th> 
-                                      <th class="text-center">Stock/Qnt</th>
+                                      {{-- <th class="text-center">Stock/Qnt</th> --}}
                                     <th class="text-center">Qnty <i class="text-danger">*</i></th>
                                     <th class="text-center">Rate<i class="text-danger">*</i></th>
                                     <th class="text-center">Total</th>
@@ -173,9 +173,9 @@
                                                
                                             </select>                              
                                 </td>                    
-                               <td class="wt">
+                               {{-- <td class="wt">
                                         <input type="text" id="available_quantity_0" class="form-control text-right stock_ctn_1" value="{{$purchase_details->availableQty($purchase_details)}}"   readonly="" autocomplete="off">
-                                    </td>
+                                    </td> --}}
                                     <td class="text-right">
                                         <input type="text" name="product_quantity[]"  id="cartoon_1" class="form-control quantity text-right "   value="{{$purchase_details->quantity}}" autocomplete="off">
                                     </td>
@@ -199,7 +199,7 @@
                         <tfoot>
                                      <tr>
                                
-                                <td style="text-align:right;" colspan="4"><b>Total:</b></td>
+                                <td style="text-align:right;" colspan="3"><b>Total:</b></td>
                                 <td class="text-right">
                                     <input type="text" id="subTotal" class="text-right form-control" name="total" value="{{$product_purchase->total_discount +$product_purchase->grand_total_amount }}" readonly="readonly" autocomplete="off">
                                 </td>
@@ -207,7 +207,7 @@
                             </tr>
                             <tr>
                                
-                                <td style="text-align:right;" colspan="3"><b>Cash Disount %</b>
+                                <td style="text-align:right;" colspan="2"><b>Cash Disount %</b>
                                 
                                 @php
                                     $discount_per = 0;
@@ -234,7 +234,7 @@
                                 {{-- <td colspan="2">
                                     <input type="button" id="addInput" class="btn btn-info"  value="Add New Item" tabindex="9" autocomplete="off">
                                      </td> --}}
-                                <td style="text-align:right;" colspan="4"><b>Grand Total:</b></td>
+                                <td style="text-align:right;" colspan="3"><b>Grand Total:</b></td>
                                 <td class="text-right">
                                     <input type="text" id="grandTotal" class="text-right form-control" name="grand_total_price" value="{{$product_purchase->grand_total_amount}}"  readonly="readonly" autocomplete="off">
                                 </td>

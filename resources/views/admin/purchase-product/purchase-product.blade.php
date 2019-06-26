@@ -33,7 +33,7 @@
             </div>
         </div>
         <br>
-            <form action="{{route('purchase.product')}}" class="form-vertical" id="insert_purchase" name="insert_purchase" enctype="multipart/form-data" method="post" accept-charset="utf-8" novalidate="novalidate">
+            <form action="" class="form-vertical" id="insertPurchaseForm"  enctype="multipart/form-data" method="post" accept-charset="utf-8" novalidate="novalidate">
                         {{csrf_field()}}
             <div class="row">
                                         <div class="col-sm-6">
@@ -53,7 +53,7 @@
                                             <div class="form-group row">
                                                 <label for="purchase_date" class="col-sm-4 col-form-label">Purchase Date : <i class="text-danger">*</i></label>
                                                 <div class="col-sm-8">
-                                                    <input required="" type="date"  class="form-control"name="purchase_date"   required="" />
+                                                    <input required="" type="date"  class="form-control" name="purchase_date"   required="" />
                                                 </div>
                                             </div>
                                         </div>
@@ -152,7 +152,7 @@
                         <thead>
                              <tr>
                                  <th class="text-center" width="20%">Item code<i class="text-danger">*</i></th> 
-                                      <th class="text-center">Stock/Qnt</th>
+                                      {{-- <th class="text-center">Stock/Qnt</th> --}}
                                     <th class="text-center">Qnty <i class="text-danger">*</i></th>
                                     <th class="text-center">Rate<i class="text-danger">*</i></th>
                                     <th class="text-center">Total</th>
@@ -162,7 +162,7 @@
                         <tbody id="table">
                             <tr>
                                 <td class="span3 supplier">
-                                        <select class="form-control  select2 products_id" id="products_id_0" name="products_id[]" required="">
+                                        <select class="form-control   products_id" id="products_id_0" name="products_id[]" required="">
                                                 <option value="">Select One</option>                                          
                                                 @foreach ($products as $product)
                                                 <option value="{{$product->id}}">{{$product->product_name}}</option>
@@ -170,9 +170,9 @@
                                                
                                             </select>                              
                                 </td>                    
-                               <td class="wt">
+                               {{-- <td class="wt">
                                         <input type="text" id="available_quantity_0" class="form-control text-right stock_ctn_1" placeholder="0.00" readonly="" autocomplete="off">
-                                    </td>
+                                    </td> --}}
                                     <td class="text-right">
                                         <input required="" type="text" name="product_quantity[]" id="cartoon_1" class="form-control quantity text-right "  placeholder="0.00" value="" min="0" tabindex="6" autocomplete="off">
                                     </td>
@@ -194,7 +194,7 @@
                         </tbody>
                         <tfoot>
                                      <tr>
-                                        <td colspan="2">
+                                        <td colspan="1">
                                             <input type="button" id="addInput" class="btn btn-info"  value="Add New Item" tabindex="9" autocomplete="off">
                                              </td>
                                 <td style="text-align:right;" colspan="2"><b>Total:</b></td>
@@ -205,7 +205,7 @@
                             </tr>
                             <tr>
                                
-                                <td style="text-align:right;" colspan="3"><b>Cash Disount %</b></td>
+                                <td style="text-align:right;" colspan="2"><b>Cash Disount %</b></td>
                                 <td><input type="text" id="discount" name="dis_percent" class="form-control text-right"  placeholder="0.00" autocomplete="off"></td>
                                 <td class="text-right">
                                     <input type="text" id="totalDiscount" class="text-right form-control" name="tdiscount" value="0.00" readonly="readonly" autocomplete="off">
@@ -214,7 +214,7 @@
                             </tr>
                             <tr>
                                 
-                                <td style="text-align:right;" colspan="4"><b>Grand Total:</b></td>
+                                <td style="text-align:right;" colspan="3"><b>Grand Total:</b></td>
                                 <td class="text-right">
                                     <input type="text" id="grandTotal" class="text-right form-control" name="grand_total_price" value="0.00" readonly="readonly" autocomplete="off">
                                 </td>
@@ -232,6 +232,10 @@
                      </div>
                 </div>
             </form>
+
+            <div id="formErr">
+              
+            </div>
 
 <!-- Add Product End -->
 @endsection
@@ -253,6 +257,8 @@ $(document).ready(function(){
         }
     });
 
+
+   
     var max = 1;
 $(document).on("click","#addInput",function(e){
     e.preventDefault();
@@ -267,9 +273,9 @@ $(document).on("click","#addInput",function(e){
                                                 '@endforeach'+                                       
                                             '</select>' +                  
                                 '</td>'+                            
-                              ' <td class="wt">'+
-                                        '<input type="text" id="'+max+'" class="form-control text-right stock_ctn_1" placeholder="0.00" readonly="" autocomplete="off">'+
-                                    '</td>'+
+                            //   ' <td class="wt">'+
+                            //             '<input type="text" id="'+max+'" class="form-control text-right stock_ctn_1" placeholder="0.00" readonly="" autocomplete="off">'+
+                            //         '</td>'+
                                     '<td class="text-right">'+
                                         '<input type="text" name="product_quantity[]" id="cartoon_1" class="form-control quantity text-right "  placeholder="0.00" value="" min="0" tabindex="6" autocomplete="off">'+
                                     '</td>'+
@@ -288,14 +294,13 @@ $(document).on("click","#addInput",function(e){
    
 })
     
-  function  fetchProductInfo(val = null,id = null,e){
+  function  fetchProductInfo(val = null,id = null){
         var inventory_id = $("#inventory_id").val();
         var inventory = $("#inventory_id").attr("id");
         var godown_id = $("#godown_id").val();
         var godown = $("#godown_id").attr("id");
         
         
-      
 
         if(!isNaN(inventory_id) && !isNaN(godown_id)){
             if(inventory_id.length != 0 && godown_id.length != 0){
@@ -315,14 +320,19 @@ $(document).on("click","#addInput",function(e){
 
         if(inventory_id == '' && godown_id == ''){
             // $("#purchaseTable").load(location.href + " #table");
+         console.log(val);
+
             $("#"+id).val('');
             $("#alertMessage").modal("show"); 
            
+        }else{
+            console.log('not ok');
+
         }
 
 
 
-        if(!inventory_id == '' && godown_id == ''){
+        if(inventory_id != '' && godown_id == ''){
            
             console.log(val);
             console.log(id);
@@ -349,7 +359,7 @@ $(document).on("click","#addInput",function(e){
             
         }
 
-        if(inventory_id == '' && !godown_id == ''){
+        if(inventory_id == '' && godown_id != ''){
            
            console.log(val);
            console.log(id);
@@ -527,6 +537,38 @@ $(document).on("keyup keypress keydown change", ".quantity", function() {
 
 
 
+    var formErr = `  <div class="row" style="position:absolute;bottom:5px;width:50%;right:50px;">
+                    <div class="col-sm-12">
+                  
+                        <div class="alert alert-danger alert-dismissible" role="alert">
+                            <button type="button" class="close" data-dismiss="alert">&times;</button>
+                            <div class="text-center" style="font-size: 18px; padding: 9px; border: 2px solid red;">
+                            Please Fill Out Form Correctly...
+                            </div>
+                        </div>
+                    
+                    </div>
+                </div>`;
+
+    $(document).on("submit","#insertPurchaseForm",function(e){
+        e.preventDefault();
+        var frmData = $(this).serialize();
+        $.ajax({
+            url:"{{route('purchase.product')}}",
+            method:"POST",
+            data:frmData,
+        })
+        .done(function(data){
+            window.location.href = "{{route('manage.purchase.product')}}";
+        })
+        .fail(function(err){
+            $("#formErr").html(formErr);
+            setTimeout(function()  {
+                $("#formErr").empty();
+            }, 3000);
+        });
+    });
+    
 
 
 

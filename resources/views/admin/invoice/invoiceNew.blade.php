@@ -2,7 +2,7 @@
 @extends('admin.master')
 
 @section('title')
-	purchase product
+	New  Invoice
 @endsection
 
 @section('mainContent')
@@ -27,13 +27,13 @@
             <div class="col-sm-12">
                 <div class="column">
 
-                    <a href="{{ url('/product/manage') }}" class="btn btn-info m-b-5 m-r-2"><i class="ti-align-justify"> </i> Manage Purchase Product </a>
+                    <a href="{{ url('/invoice/manage') }}" class="btn btn-info m-b-5 m-r-2"><i class="ti-align-justify"> </i> Manage Invoice </a>
 
                 </div>
             </div>
         </div>
         <br>
-            <form action="{{url('/invoice/save')}}" class="form-vertical" id="insert_purchase" name="insert_purchase" enctype="multipart/form-data" method="post" accept-charset="utf-8" novalidate="novalidate">
+            <form action="" class="form-vertical" id="insertSellForm"  enctype="multipart/form-data" method="post" accept-charset="utf-8" novalidate="novalidate">
                         {{csrf_field()}}
             <div class="row">
                                         <div class="col-sm-6">
@@ -76,7 +76,7 @@
                                                 </div>
                                             <div class="col-sm-6">
                                                     <div class="form-group row">
-                                                        <label for="status" class="col-sm-4 col-form-label">Status :  <i class="text-danger">*</i></label>
+                                                        <label for="status" class="col-sm-4 col-form-label">Status :  </label>
                                                         <div class="col-sm-8">
                                                             <select class="form-control select2" id="status" name="status" >
                                                                 <option value="">Select One</option>                                          
@@ -270,6 +270,8 @@
                 </div>
             </form>
 
+            <div id="formErr"></div>
+
 <!-- Add Product End -->
 @include('admin.invoice.alert')
 
@@ -284,55 +286,6 @@
 
 @push('script')
 
-<script>
-
-    $().ready(function() {
-
-        
-        $('input.quantity').each(function() {
-                $(this).rules("add", 
-                    {
-                        required: true
-                    })
-            });   
-
-            event.preventDefault();
-            $("#insert_purchase").validate();
-
-    // $("#personal-info").validate();
-
-//    validate signup form on keyup and submit
-    $("#insert_purchase").validate({
-        rules: {
-            
-            "product_quantity[]" : {
-                required: true,
-                minlength: 1,
-            },
-            
-            username: {
-                required: true,
-                minlength: 2
-            },
-            
-        },
-        messages: {
-            firstname: "Please enter your firstname",
-            lastname: "Please enter your lastname",
-            username: {
-                required: "Please enter a username",
-                minlength: "Your username must consist of at least 2 characters"
-            },
-          
-            topic: "Please select at least 2 topics"
-        }
-    });
-
-   
-
-});
-
-    </script>
 
 <script src="{{asset('admin/assets/js/numberconverter.js')}}"></script>
 <script>
@@ -341,6 +294,40 @@ $(document).ready(function(){
         headers: {
             'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
         }
+    });
+
+
+
+    var formErr = `  <div class="row" style="position:absolute;bottom:5px;width:50%;right:50px;">
+                    <div class="col-sm-12">
+                  
+                        <div class="alert alert-danger alert-dismissible" role="alert">
+                            <button type="button" class="close" data-dismiss="alert">&times;</button>
+                            <div class="text-center" style="font-size: 18px; padding: 9px; border: 2px solid red;">
+                            Please Fill Out Form Correctly...
+                            </div>
+                        </div>
+                    
+                    </div>
+                </div>`;
+
+    $(document).on("submit","#insertSellForm",function(e){
+        e.preventDefault();
+        var frmData = $(this).serialize();
+        $.ajax({
+            url:"{{url('/invoice/save')}}",
+            method:"POST",
+            data:frmData,
+        })
+        .done(function(data){
+            window.location.href = "{{url( '/invoice/manage')}}";
+        })
+        .fail(function(err){
+            $("#formErr").html(formErr);
+            setTimeout(function()  {
+                $("#formErr").empty();
+            }, 5000);
+        });
     });
 
     var max = 1;

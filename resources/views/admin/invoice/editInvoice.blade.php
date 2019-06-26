@@ -77,7 +77,7 @@
                                                 </div>
                                             <div class="col-sm-6">
                                                     <div class="form-group row">
-                                                        <label for="unit" class="col-sm-4 col-form-label">Status : <i class="text-danger">*</i> </label>
+                                                        <label for="unit" class="col-sm-4 col-form-label">Status :  </label>
                                                         <div class="col-sm-8">
                                                             <select class="form-control select2" id="unit" name="status" >
                                                                 <option value="">Select One</option>                                          

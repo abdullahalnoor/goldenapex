@@ -192,7 +192,7 @@
 
 
             <tr>
-                <td style="text-align: right" >Grand Total :</td>
+                <td style="text-align: right" >in Word :</td>
                 <td style="text-align: left;text-transform:capitalize;" colspan="4">{{ $inWorTk}} Only</td>
             </tr>
 
