@@ -27,7 +27,7 @@
             <div class="col-sm-12">
                 <div class="column">
 
-                    <a href="{{ url('/product/manage') }}" class="btn btn-info m-b-5 m-r-2"><i class="ti-align-justify"> </i> Manage Purchase Product </a>
+                    <a href="{{ route('manage.purchase.product') }}" class="btn btn-info m-b-5 m-r-2"><i class="ti-align-justify"> </i> Manage Purchase Product </a>
 
                 </div>
             </div>

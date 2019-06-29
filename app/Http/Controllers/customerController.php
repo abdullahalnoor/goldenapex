@@ -8,6 +8,7 @@ use Illuminate\Http\Request;
 class customerController extends Controller
 {
     public function index(){
+        
     	return view('admin.customer.addcustomer');
     }
 
@@ -23,14 +24,16 @@ class customerController extends Controller
     }
 
     public function manage(){
-    	$customer_info = customer_info::all();
+    	$customer_info = customer_info::orderBy('id','DESC')->paginate(10);
     	return view('admin.customer.managecustomer', get_defined_vars());
     }
 
     public function edit($id){
         $customer_info = customer_info::where('id',$id)->first();
 
-        return view('admin.Customer.Customeredit', get_defined_vars());
+        // return $customer_info;
+
+        return view('admin.Customer.editcustomer', get_defined_vars());
     }
 
     public function update(Request $request){
@@ -39,10 +42,10 @@ class customerController extends Controller
         $customer_info->customer_address = $request->input('address');
         $customer_info->customer_mobile = $request->input('mobile');
         $customer_info->customer_email = $request->input('email');
-        $customer_info->status = $request->input('status');
+        $customer_info->status = $request->input('status') == '' ? 1 : $request->input('status');
         $customer_info->save();
 
-        return redirect('/Customer/manage')->with('message','Customer Information update Successfully.');
+        return redirect('/customer/manage')->with('message','Customer Information update Successfully.');
 
     }
 

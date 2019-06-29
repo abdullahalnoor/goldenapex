@@ -131,7 +131,7 @@
         <tr>
             <th style="width: 5%;">Sl</th>
             <th style="width: 40%;">Item</th>
-            <th style="width: 15%;">Queantiy</th>
+            <th style="width: 15%;">Quantity</th>
             <th style="width: 15%;">Unit Price</th>
             <th style="width: 25%;">Amount</th>
         </tr>

@@ -2,7 +2,7 @@
 @extends('admin.master')
 
 @section('title')
-	purchase product
+Update Invoice
 @endsection
 
 @section('mainContent')
@@ -27,7 +27,7 @@
             <div class="col-sm-12">
                 <div class="column">
 
-                    <a href="{{ url('/product/manage') }}" class="btn btn-info m-b-5 m-r-2"><i class="ti-align-justify"> </i> Manage Purchase Product </a>
+                    <a href="{{ url('/invoice/manage') }}" class="btn btn-info m-b-5 m-r-2"><i class="ti-align-justify"> </i> Manage Invoice </a>
 
                 </div>
             </div>

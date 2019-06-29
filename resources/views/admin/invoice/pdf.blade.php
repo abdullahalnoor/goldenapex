@@ -105,7 +105,7 @@
                                 Address : 68/69 CONCEPT TOWER ,GREEN ROAD,DHAKA-1205 <br />
                                
                             </address>
-                            <h4 style="text-transform:uppercase;margin-top: 5px;font-size:18px">Sell Invoice</h4>
+                            <h4 style="text-transform:uppercase;margin-top: 5px;font-size:18px">Sells Invoice</h4>
                         </td>
                     </tr>
                     <tr style="width:100%;text-align: center">
@@ -136,7 +136,7 @@
                     <tr>
                         <th style="width: 5%;">Sl</th>
                         <th style="width: 40%;">Item </th>
-                        <th style="width: 15%;">Queantiy</th>
+                        <th style="width: 15%;">Quantity</th>
                         <th style="width: 15%;">Unit Price</th>
                         <th style="width: 25%;">Amount</th>
                     </tr>

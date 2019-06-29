@@ -1,7 +1,7 @@
 @extends('admin.master')
 
 @section('title')
-	Add Customer Information
+	Update Customer Information
 @endsection
 
 @section('mainContent')
@@ -23,34 +23,36 @@
         <br>
 	<div class="card">
 			     <div class="card-body">
-				   <div class="card-title">Add Customer Information</div>
+				   <div class="card-title">Update Customer Information</div>
 				   <hr>				   
-				    {!! Form::open(['url' => '/customer/save','method'=>'POST']) !!}
+				    {!! Form::open(['url' => '/customer/update','method'=>'POST']) !!}
 <div class="form-group row">
+    @csrf
                             <label for="customer_name" class="col-sm-3 col-form-label">Customer Name <i class="text-danger">*</i></label>
                             <div class="col-sm-6">
-                                <input class="form-control" name ="customer_name" id="customer_name" type="text" placeholder="Customer Name"  required="" tabindex="1">
+                                <input class="form-control" name ="customer_name" id="customer_name" type="text" value="{{$customer_info->customer_name}}"  required="" tabindex="1">
+                                <input  name ="id"  type="hidden" value="{{$customer_info->id}}" >
                             </div>
                         </div>
 
                        	<div class="form-group row">
                             <label for="email" class="col-sm-3 col-form-label">Customer Email </label>
                             <div class="col-sm-6">
-                                <input class="form-control" name ="email" id="email" type="email" placeholder="Customer Email" tabindex="2" > 
+                                <input class="form-control" name ="email" id="email" type="email" value="{{$customer_info->customer_email}}"  tabindex="2" > 
                             </div>
                         </div>
 
                         <div class="form-group row">
                             <label for="mobile" class="col-sm-3 col-form-label">Customer Mobile <i class="text-danger">*</i> </label>
                             <div class="col-sm-6">
-                                <input class="form-control" name ="mobile" id="mobile" type="text" placeholder="Customer Mobile" min="0" tabindex="3" required="">
+                                <input class="form-control" name ="mobile" id="mobile" type="text" value="{{$customer_info->customer_mobile}}"  min="0" tabindex="3" required="">
                             </div>
                         </div>
 
                         <div class="form-group row">
                             <label for="address " class="col-sm-3 col-form-label">Customer Address <i class="text-danger">*</i> </label>
                             <div class="col-sm-6">
-                                <textarea class="form-control" name="address" id="address " rows="3" placeholder="Customer Address" tabindex="4" required=""></textarea>
+                                <textarea class="form-control" name="address" id="address " rows="3"  tabindex="4" required="">{{$customer_info->customer_address}}</textarea>
                             </div>
                         </div>
                     <!--  <div class="form-group row">
@@ -65,14 +67,14 @@
                         {{-- <div class="form-group row">
                             <label for="previous_balance" class="col-sm-3 col-form-label">Previous Credit Balance </label>
                             <div class="col-sm-6">
-                                <input class="form-control" name="previous_balance" id="previous_balance" type="text" placeholder="Previous Credit Balance" tabindex="5" >
+                                <input class="form-control" name="previous_balance" id="previous_balance" type="text" value="{{$customer_info->customer_address}}" tabindex="5" >
                             </div>
                         </div>  --}}
 					<div class="form-group row">
                             <label for="example-text-input" class="col-sm-4 col-form-label"></label>
                             <div class="col-sm-6">
                                 <input type="reset" class="btn btn-danger" value="Reset" tabindex="6"/>
-                                <input type="submit" id="add-deposit" class="btn btn-info" name="add-deposit" value="Save" tabindex="7"/>
+                                <input type="submit" class="btn btn-info" value="Update" />
                             </div>
                         </div>
 					{!! Form::close() !!}

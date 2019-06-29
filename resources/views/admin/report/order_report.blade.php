@@ -1,7 +1,7 @@
 @extends('admin.master')
 
 @section('title')
-	Due Collection
+	Order Report
 @endsection
 
 @section('mainContent')
@@ -16,13 +16,14 @@
                     </div>
                     <div class="card-body">
 						<div class="card-title">
-                            <h4>Due Collection</h4>
+                            <h4>Order Report</h4>
                             <hr>
                         </div>
-                            <form action="#" class="form-inline" method="get" accept-charset="utf-8">
+                            <form action="{{route('view-marketing.order')}}" class="form-inline" method="POST" accept-charset="utf-8">
+                                @csrf
                         <div class="form-group">
-                             <label for="customer">Employee Name<i class="text-danger">*</i></label>
-                            <select class="form-control" name="customer_id">
+                             <label for="employee_id">Employee Name<i class="text-danger">*</i></label>
+                            <select class="form-control  ml-2 " name="employee_id">
                                 <option value="">Select One</option>
 								@foreach ($employee as $employee)
 									<option value="{{ $employee->id }}">{{ $employee->name }}</option>
@@ -31,13 +32,13 @@
                         </div>
                         <samp style="width: 10px"></samp>
                         <div class="form-group">
-                            <label class="" for="from_date">Start Date</label>
-                            	<input  type="text" name="from_date" class="form-control datepicker" id="from_date" placeholder="Start Date">
+                            <label class="" for="from_date">Start Date <i class="text-danger">*</i> </label>
+                            	<input  type="date" name="from_date" class="form-control  ml-2 datepicker" id="from_date" placeholder="Start Date">
                         </div> 
 						<samp style="width: 10px"></samp>
                         <div class="form-group">
-                            <label class="" for="to_date">End Date</label>
-                            <input type="text" name="to_date" class="form-control datepicker" id="to_date" placeholder="End Date">
+                            <label class="" for="to_date">End Date <i class="text-danger">*</i> </label>
+                            <input type="date" name="to_date" class="form-control  ml-2 datepicker" id="to_date" placeholder="End Date">
                         </div>  
 						<samp style="width: 10px"></samp>
                         <button type="submit" class="btn btn-primary">Search</button>

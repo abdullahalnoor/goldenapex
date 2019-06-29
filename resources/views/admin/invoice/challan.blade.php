@@ -136,7 +136,7 @@
                     <tr>
                         <th style="width: 5%;">Sl</th>
                         <th style="width: 40%;">Item </th>
-                        <th style="width: 15%;">Queantiy</th>
+                        <th style="width: 15%;">quantity</th>
                        
                     </tr>
             

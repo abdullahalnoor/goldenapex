@@ -176,6 +176,7 @@ Route::get('/employee/delete/{id}', 'employeeController@delete');
 
 /*start marketing*/
 Route::get('/marketing/order', 'marketingReportController@order');
+Route::post('/view-marketing/order', 'marketingReportController@viewMarketingOrder')->name('view-marketing.order');
 Route::get('/marketing/due/collection', 'marketingReportController@due');
 /*end marketing*/
 
