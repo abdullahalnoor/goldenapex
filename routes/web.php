@@ -152,6 +152,17 @@ Route::get('/product/grade/delete/{id}', 'ProductGradeController@delete')->name(
 /*end Product grade */
 
 
+
+/*start product cft*/
+Route::get('/product/cft/add', 'ProductCftController@create')->name('add.product.cft');
+Route::post('/product/cft/save', 'ProductCftController@save')->name('product.cft.save');
+Route::get('/product/cft/manage', 'ProductCftController@manage');
+Route::get('/product/cft/edit/{id}','ProductCftController@edit');
+Route::post('/product/cft/update','ProductCftController@update')->name('product.cft.update');
+Route::get('/product/cft/delete/{id}', 'ProductCftController@delete')->name('product.cft.delete');
+/*end Product cft */
+
+
 /*start bank*/
 Route::get('/bank/add', 'bankController@index');
 Route::post('/bank/save', 'bankController@save');

@@ -3,7 +3,7 @@
 @section('mainContent')
 
 @section('title')
-	Manage Product
+	Manage Product Grade
 @endsection
 
 <br>
@@ -27,7 +27,7 @@
         <div class="row">
             <div class="col-sm-12">
                 <div class="column">
-                    <a href="{{ route('add.product') }}" class="btn btn-info m-b-5 m-r-2"><i class="ti-plus"> </i> Add Product </a>
+                    <a href="{{ route('add.product.grade') }}" class="btn btn-info m-b-5 m-r-2"><i class="ti-plus"> </i> Add Product Grade </a>
                 </div>
             </div>
         </div>

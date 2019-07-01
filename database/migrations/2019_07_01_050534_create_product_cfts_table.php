@@ -19,7 +19,6 @@ class CreateProductCftsTable extends Migration
             $table->integer('width');
             $table->integer('height');
             $table->integer('length');
-            $table->double('rate',30,2);
             $table->timestamps();
         });
     }

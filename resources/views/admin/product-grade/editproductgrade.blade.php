@@ -1,7 +1,7 @@
 @extends('admin.master')
 
 @section('title')
-	Update Product
+	Update Product Grade
 @endsection
 
 @section('mainContent')
@@ -12,7 +12,7 @@
             <div class="col-sm-12">
                 <div class="column">
 
-                    <a href="{{ url('/product/manage') }}" class="btn btn-info m-b-5 m-r-2"><i class="ti-align-justify"> </i> Manage Product </a>
+                    <a href="{{ url('/product/grade/manage') }}" class="btn btn-info m-b-5 m-r-2"><i class="ti-align-justify"> </i> Manage Product Grade</a>
 
                 </div>
             </div>
@@ -20,7 +20,7 @@
         <br>
 	<div class="card">
 			     <div class="card-body">
-				   <div class="card-title"> <i class="fa fa-edit"></i> Update Product Information</div>
+				   <div class="card-title"> <i class="fa fa-edit"></i> Update Product Grade</div>
 				   <hr>				  
 			   <!-- Add Product -->
         <div class="row">

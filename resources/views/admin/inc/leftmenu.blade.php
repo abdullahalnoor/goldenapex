@@ -60,6 +60,11 @@
         
         <li><a href="{{ url('/product/grade/add') }}"><i class="fa fa-circle-o"></i> Add Item Grade</a></li>
         <li><a href="{{ url('/product/grade/manage') }}"><i class="fa fa-circle-o"></i> Manage Item Grade</a></li>
+          
+        {{-- <li><a href="{{ url('/product/cft/add') }}"><i class="fa fa-circle-o"></i> Add Item CFT</a></li>
+        <li><a href="{{ url('/product/cft/manage') }}"><i class="fa fa-circle-o"></i> Manage Item CFT</a></li> --}}
+     
+     
       </ul>
       </li>
 
