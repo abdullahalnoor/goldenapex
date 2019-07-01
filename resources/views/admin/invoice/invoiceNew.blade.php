@@ -28,10 +28,12 @@
                 <div class="column">
 
                     <a href="{{ url('/invoice/manage') }}" class="btn btn-info m-b-5 m-r-2"><i class="ti-align-justify"> </i> Manage Invoice </a>
-
+                    
                 </div>
             </div>
         </div>
+
+
         <br>
             <form action="" class="form-vertical" id="insertSellForm"  enctype="multipart/form-data" method="post" accept-charset="utf-8" novalidate="novalidate">
                         {{csrf_field()}}
@@ -287,6 +289,7 @@
 @push('script')
 
 
+
 <script src="{{asset('admin/assets/js/numberconverter.js')}}"></script>
 <script>
 $(document).ready(function(){
@@ -295,6 +298,9 @@ $(document).ready(function(){
             'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
         }
     });
+
+
+    
 
 
 

@@ -142,6 +142,16 @@ Route::post('/product/update','productController@update')->name('product.update'
 Route::get('/product/delete/{id}', 'productController@delete')->name('product.delete');
 /*end Product*/
 
+/*start product grade*/
+Route::get('/product/grade/add', 'ProductGradeController@index')->name('add.product.grade');
+Route::post('/product/grade/save', 'ProductGradeController@save')->name('product.grade.save');
+Route::get('/product/grade/manage', 'ProductGradeController@manage');
+Route::get('/product/grade/edit/{id}','ProductGradeController@edit');
+Route::post('/product/grade/update','ProductGradeController@update')->name('product.grade.update');
+Route::get('/product/grade/delete/{id}', 'ProductGradeController@delete')->name('product.grade.delete');
+/*end Product grade */
+
+
 /*start bank*/
 Route::get('/bank/add', 'bankController@index');
 Route::post('/bank/save', 'bankController@save');

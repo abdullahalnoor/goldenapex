@@ -57,7 +57,10 @@
         <li><a href="{{ url('/product/manage') }}"><i class="fa fa-circle-o"></i> Manage Item</a></li>
         {{-- <li><a href="{{ url('/product/location') }}"><i class="fa fa-circle-o"></i> Inventory Location</a></li>
         <li><a href="{{ url('/product/report') }}"><i class="fa fa-circle-o"></i> Inventory Report</a></li> --}}
-        </ul>
+        
+        <li><a href="{{ url('/product/grade/add') }}"><i class="fa fa-circle-o"></i> Add Item Grade</a></li>
+        <li><a href="{{ url('/product/grade/manage') }}"><i class="fa fa-circle-o"></i> Manage Item Grade</a></li>
+      </ul>
       </li>
 
       <li>
