@@ -20,8 +20,9 @@ class CreateInvoiceDetailsTable extends Migration
             $table->integer('inventory_id')->nullable();
             $table->integer('godown_id')->nullable();
             $table->integer('direct_sell')->nullable();
-            $table->float('quantity');
-            $table->float('rate');
+            $table->integer('product_size');
+            $table->integer('quantity');
+            $table->float('rate',30,2);
             
             $table->float('total_price');	
             $table->float('discount',2)->nullable();

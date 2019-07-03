@@ -171,9 +171,10 @@
                         <thead>
                              <tr>
                                  <th class="text-center" width="20%">Select Item <i class="text-danger">*</i></th> 
-                                      <th class="text-center">Stock</th>
-                                    <th class="text-center">Qnty <i class="text-danger">*</i></th>
-                                    <th class="text-center">Rate<i class="text-danger">*</i></th>
+                                      
+                                    <th class="text-center" width="20%">Size <i class="text-danger">*</i></th>
+                                    <th class="text-center">Qyt<i class="text-danger">*</i></th>
+                                    <th class="text-center">Rate</th>
                                     <th class="text-center">Total</th>
                                     <th class="text-center">Action</th>
                                 </tr>
@@ -189,14 +190,25 @@
                                                
                                             </select>                              
                                 </td>                    
-                               <td class="wt">
-                                        <input type="text" id="available_quantity_0"  class="form-control text-right stock_ctn_1" placeholder="0.00" readonly="" autocomplete="off">
-                                    </td>
+                                <td class="span3 supplier">
+                                    <select class="form-control select2 product_size" required id="product_size" name="product_size[]" required="">
+                                            <option value="">Select One</option>
+                                           
+                                            @foreach ($productCft as $cft)
+                                            @foreach ($productGrade as $grade)
+                                                @if($grade->id == $cft->grade_id)
+                                                <option value="{{$cft->id}}">{{$cft->length.'x'.$cft->width.'x'.$cft->height.' '.$grade->name.' @'.$grade->price}}</option>
+                                                @endif
+                                            @endforeach
+                                            @endforeach
+                                           
+                                        </select>                              
+                            </td> 
                                     <td class="text-right">
                                         <input type="text" name="product_quantity[]" required id="cartoon_1" class="form-control quantity text-right "  placeholder="0.00" value="" min="0" tabindex="6" autocomplete="off" required="">
                                     </td>
                                     <td class="test">
-                                        <input type="text" name="product_rate[]" required id="product_rate_1" class="form-control  product_rate text-right" placeholder="0.00" value="" min="0" tabindex="7" autocomplete="off" required="">
+                                        <input type="text" name="product_rate[]" required id="product_rate_1" class="form-control  product_rate text-right" placeholder="0.00" value="" min="0" tabindex="7" readonly="readonly" autocomplete="off" required="">
                                     </td>
                                    
 
@@ -319,6 +331,11 @@ $(document).ready(function(){
 
     $(document).on("submit","#insertSellForm",function(e){
         e.preventDefault();
+
+       
+          
+     
+        
         var frmData = $(this).serialize();
         $.ajax({
             url:"{{url('/invoice/save')}}",
@@ -350,14 +367,23 @@ $(document).on("click","#addInput",function(e){
                                                 '@endforeach'+                                       
                                             '</select>' +                  
                                 '</td>'+                            
-                              ' <td class="wt">'+
-                                        '<input type="text" id="'+max+'" class="form-control text-right stock_ctn_1" placeholder="0.00" readonly="" autocomplete="off">'+
-                                    '</td>'+
+                                '<td class="span3 supplier">'+
+                                   ' <select class="form-control select2 product_size" required id="product_size_'+max+'" name="product_size[]" required="">'+
+                                           ' <option value="">Select One</option>'+
+                                            '@foreach ($productCft as $cft)'+
+                                            '@foreach ($productGrade as $grade)'+
+                                                '@if($grade->id == $cft->grade_id)'+
+                                                '<option value="{{$cft->id}}">{{$cft->length.'x'.$cft->width.'x'.$cft->height.' '.$grade->name.' @'.$grade->price}}</option>'+
+                                                '@endif'+
+                                            '@endforeach'+
+                                            '@endforeach'+
+                                        '</select>'  +                            
+                            '</td>' +
                                     '<td class="text-right">'+
                                         '<input type="text" name="product_quantity[]"  id="cartoon_1" class="form-control quantity text-right "  placeholder="0.00"   autocomplete="off" >'+
                                     '</td>'+
                                    ' <td class="test">'+
-                                        '<input type="text" name="product_rate[]"  id="product_rate_1" class="form-control  product_rate text-right" placeholder="0.00"  autocomplete="off">'+
+                                        '<input type="text" name="product_rate[]"  id="product_rate_1" class="form-control  product_rate text-right" placeholder="0.00" readonly="readonly" autocomplete="off">'+
                                     '</td> ' +  
                                     '<td class="text-right">'+
                                        ' <input class="form-control total_price text-right" type="text" name="total_price[]" id="total_price_1" value="0.00" readonly="readonly" autocomplete="off">'+
@@ -368,21 +394,9 @@ $(document).on("click","#addInput",function(e){
                             '</tr>'
       );
 
-    //   var total = 0;
-        // $("#table").each(function() {
-        // // Sum only if the text entered is number and greater than 0
-        //     // $(this).children().children().children().css('background-color','red');
-
-        //     for(var i = 0; i <= max; i++){
-        //     var input = $(this).children().children()[0];
-        //    input =  $(input).children()[i];
-        //    input =  $(input).css('background-color','red');
-        //    input =  $(input).addClass('select2');
-        //     console.log(input);
-        //     }
-            
-        // });
-        
+      $('#table select').each(function(){
+          $(this).select2();
+      });
 
 
     max ++;
@@ -395,6 +409,7 @@ $(document).on("click","#addInput",function(e){
         var inventory = $("#inventory_id").attr("id");
         var godown_id = $("#godown_id").val();
         var godown = $("#godown_id").attr("id");
+
         
         var direct_sell = $("#direct_sell").val();
       
@@ -463,12 +478,10 @@ $(document).on("click","#addInput",function(e){
                 console.log(route);
 
                     $.get(route,function(data){
-                        // available_quantity_0
+                       
                         // $("#"+id).parent().next().children().css('background-color','red');
                         $("#"+id).parent().next().children().val(data.purchase_qty);
-                        // parent().next().children()
-                        console.log(data.purchase_qty);
-                        // $("#"+id).val(data.purchase_qty);
+                       
                     });
 
 
@@ -485,10 +498,57 @@ $(document).on("click","#addInput",function(e){
         var id = $(this).attr("id");
         var val = $(this).val();
         // var ids = e.target.value;
-        // console.log(id);
+        console.log(id);
         fetchProductInfo(val,id);
 
     }) 
+
+
+
+
+
+    function  fetchProductPrice(val = null,id = null){
+   
+
+        // invoice.fetch-product-price
+
+
+        var  route  = "{{url('/invoice/fetch-product-price/')}}"+'/'+val;
+                    // console.log(route);
+
+                        $.get(route,function(data){
+                            console.log(data);
+                            // available_quantity_0
+                            // $("#"+id).parent().next().children().css('background-color','red');
+                        
+                            $("#"+id).parent().next().next().children().val(data);
+                            // parent().next().children()
+                            // console.log(data.purchase_qty);
+                            // $("#"+id).val(data.purchase_qty);
+                            
+                        });
+    }
+
+
+
+    $(document).on("keyup keypress keydown change",".product_size",function(e){
+        e.preventDefault();
+        var id = $(this).attr("id");
+        var val = $(this).val();
+        // var ids = e.target.value;
+        // console.log(val);
+        fetchProductPrice(val,id);
+
+    }) 
+
+    $(".select2 .products_id").select2({
+        
+        // var id = $(this).attr("id");
+        // var val = $(this).val();
+        // // var ids = e.target.value;
+        // // console.log(id);
+        // fetchProductInfo(val,id);
+    });
 
     function cleanDynamicInputs(){
         $("#products_id_0").val('');

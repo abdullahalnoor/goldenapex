@@ -18,6 +18,9 @@ Route::get('/invoice/create', 'invoiceController@create');
 Route::get('/invoice/edit/{id}', 'invoiceController@edit');
 Route::post('/invoice/update', 'invoiceController@update');
 Route::get('/invoice/delete/{id}', 'invoiceController@delete');
+Route::get('/invoice/fetch-product-price/{id}', 'invoiceController@fetchProductPrice')->name('invoice.fetch-product-price');
+
+
 
 Route::get('/pdf/invoice/{id}/{type}','invoiceController@invoiceProductPDF')->name('pdf.invoice.product');
 

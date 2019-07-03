@@ -11,6 +11,8 @@ use App\invoice_details;
 use App\Stock;
 use App\Supplier;
 use App\Godown;
+use App\ProductGrade;
+use App\ProductCft;
 use Illuminate\Support\Facades\Input;
 use PDF;
 
@@ -83,6 +85,8 @@ private function numberTowords(float $number)
         $products = Product::all();
         $locations = Location::all();
         $customer_info = customer_info::all();
+        $productCft =  ProductCft::all();
+        $productGrade = ProductGrade::all();
        
         $godowns = Godown::all();
         $lastInvoiceID = invoice::orderBy('id', 'DESC')->pluck('sell_invoice_no')->first();
@@ -91,14 +95,31 @@ private function numberTowords(float $number)
         }else{
             $newInvoiceID = $lastInvoiceID + 1;
         }
+        // return  $productGrade;
     	return view('admin.invoice.invoiceNew', [
             'customer_info' => $customer_info,
             'locations' => $locations,
             'products' => $products,
             'godowns' => $godowns,
             'newInvoiceID' => $newInvoiceID,
+            'productCft' => $productCft,
+            'productGrade' => $productGrade,
         ]);
     }
+
+
+
+    public function fetchProductPrice($id){
+        $productCft =  ProductCft::find($id);
+        $productGrade = ProductGrade::find($productCft->grade_id);
+        $totalCft =round((($productCft->length * $productCft->width * $productCft->height) / 1728),2);
+        $totalRate = $totalCft * $productGrade->price;
+        $sizeRate = round($totalRate,2);
+                                 
+        return $sizeRate;
+    }
+
+
     public function save(Request $request){
         
         // return $request->all();
@@ -178,6 +199,7 @@ private function numberTowords(float $number)
 
                 $invoice_details->invoice_id = $invoice->id;
                 $invoice_details->product_id = $request->products_id[$i];
+                $invoice_details->product_size = $request->product_size[$i];
                 $invoice_details->quantity = $request->product_quantity[$i];
                 $invoice_details->rate = $request->product_rate[$i];
                 $total_price = $request->product_quantity[$i] * $request->product_rate[$i];
@@ -326,7 +348,7 @@ private function numberTowords(float $number)
                 $invoice_details =  invoice_details::where('invoice_id',$invoice->id)->where('product_id',$request->product_id[$i])->first();
             
 
-
+                $invoice_details->product_size = $request->product_size[$i];
                 $invoice_details->quantity = $request->product_quantity[$i];
                 $invoice_details->rate = $request->product_rate[$i];
                 $total_price = $request->product_quantity[$i] * $request->product_rate[$i];

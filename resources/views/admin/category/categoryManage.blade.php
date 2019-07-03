@@ -49,7 +49,7 @@
               <table id="default-datatable" class="table table-bordered">
                 <thead>
                     <tr class="text-center">
-                    	<th>Category ID</th>
+                    	<th>Sl</th>
                         <th>Category Name</th>
                         <th>Status</th>
                         <th>Action</th>
