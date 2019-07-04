@@ -346,7 +346,12 @@ class ProductPurchaseController extends Controller
 
     public function savePurchaseProductIfo(Request $request){
 
-
+        $this->validate($request,[
+            'supplier_id' => 'required',
+            'purchase_date' => 'required',
+            'grand_total_amount' => 'required',
+            'purchase_details' => 'required',
+        ]);
        
         if(!empty($request->inventory_id && !empty($request->godown_id))){
             return back()->with('danger','Select one Godown or Store. Not Both..');

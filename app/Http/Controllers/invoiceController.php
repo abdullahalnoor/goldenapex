@@ -127,7 +127,9 @@ private function numberTowords(float $number)
         $this->validate($request,[
             'products_id.*' => 'required',
             'product_size.*' => 'required',
+            'customer_id' => 'required',
             'date' => 'required',
+            'invoice_details' => 'required',
         ]);
 
         $inputs = Input::except(['_token','customer_id','payment_type','inventory_id','status','invoice_details']);
