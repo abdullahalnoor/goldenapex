@@ -149,11 +149,20 @@
                       @foreach ($invoice_details as $detail)
                       <tr>
                           <td style="width: 5%;">{{$i++}}</td>
-                          <td style="width: 40%;">
+                          <td style="width: 40%;text-align:left">
                             @foreach ($products as $product)
                                 @if ($product->id == $detail->product_id)
                                     {{$product->product_name}}
                                 @endif
+                            @endforeach
+                            @foreach ($productCft as $cft)
+                            @foreach ($productGrade as $grade)
+                                @if($grade->id == $cft->grade_id)
+                                @if($detail->product_size == $cft->id)
+                                <option value="{{$cft->id}}">{{$cft->length.'x'.$cft->width.'x'.$cft->height.' '.$grade->name}}</option>
+                                @endif
+                                @endif
+                            @endforeach
                             @endforeach
                         </td>
                           <td style="width: 15%;">{{$detail->quantity}}</td>
