@@ -21,6 +21,8 @@ use App\invoice_details;
 use App\customer_info;
 use App\SellReturn;
 use App\SellReturnDetail;
+use App\ProductGrade;
+use App\ProductCft;
 // use Request;
 
 
@@ -225,7 +227,8 @@ class ProductReturnController extends Controller
         $inventoryId = invoice_details::where('invoice_id',$invoice->id)->first(['godown_id','inventory_id','direct_sell']);
         // return $inventoryId->direct_sell;
         // $product_purchase_details = product_purchase_details::where('purchase_id',$product_purchase->id)->get();
-        
+        $productCft =  ProductCft::all();
+        $productGrade = ProductGrade::all();
         $component = view('admin.return.sell-return',get_defined_vars());
         
         return view('admin.return.product-return',[
@@ -273,6 +276,18 @@ class ProductReturnController extends Controller
           $invoice->total_discount -= $request->discount_total ;
           $invoice->total_discount_two -= $request->multi_dis_total;
           $invoice->save();
+
+          $invoice_details;
+          if(isset($request->inventory_id)){
+            $invoice_details =  invoice_details::where('invoice_id',$invoice->id)->where('inventory_id',$request->inventory_id)->get();
+         
+        }elseif(isset($request->godown_id)){
+            $invoice_details =  invoice_details::where('invoice_id',$invoice->id)->where('godown_id',$request->godown_id)->get();
+
+        }elseif(isset($request->direct_sell)){
+            $invoice_details =  invoice_details::where('invoice_id',$invoice->id)->where('direct_sell',$request->direct_sell)->get();
+
+        }
           
           for ($i=0; $i < count($request->return_sell_quantity); $i++) { 
 
@@ -327,21 +342,21 @@ class ProductReturnController extends Controller
                 // $sellReturnDetail->direct_sell =  $request->direct_sell;
                 //$request->sell_total_price[$i] / $request->return_sell_quantity[$i];
 
-                if(isset($request->inventory_id)){
-                    $invoice_details =  invoice_details::where('invoice_id',$invoice->id)->where('inventory_id',$request->inventory_id)->where('product_id',$request->product_id[$i])->first();
+                // if(isset($request->inventory_id)){
+                //     $invoice_details =  invoice_details::where('invoice_id',$invoice->id)->where('inventory_id',$request->inventory_id)->where('product_id',$request->product_id[$i])->first();
                  
-                }elseif(isset($request->godown_id)){
-                    $invoice_details =  invoice_details::where('invoice_id',$invoice->id)->where('godown_id',$request->godown_id)->where('product_id',$request->product_id[$i])->first();
+                // }elseif(isset($request->godown_id)){
+                //     $invoice_details =  invoice_details::where('invoice_id',$invoice->id)->where('godown_id',$request->godown_id)->where('product_id',$request->product_id[$i])->first();
 
-                }elseif(isset($request->direct_sell)){
-                    $invoice_details =  invoice_details::where('invoice_id',$invoice->id)->where('direct_sell',$request->direct_sell)->where('product_id',$request->product_id[$i])->first();
+                // }elseif(isset($request->direct_sell)){
+                //     $invoice_details =  invoice_details::where('invoice_id',$invoice->id)->where('direct_sell',$request->direct_sell)->where('product_id',$request->product_id[$i])->first();
 
-                }
-                    $invoice_details->quantity -= $request->return_sell_quantity[$i];
-                    $invoice_details->discount -= $discount_one;
-                    $invoice_details->discount_two -= $discount_two;
-                    $invoice_details->total_price -= $total_price;
-                    $invoice_details->save();
+                // }
+                    $invoice_details[$i]->quantity -= $request->return_sell_quantity[$i];
+                    $invoice_details[$i]->discount -= $discount_one;
+                    $invoice_details[$i]->discount_two -= $discount_two;
+                    $invoice_details[$i]->total_price -= $total_price;
+                    $invoice_details[$i]->save();
                
 
 

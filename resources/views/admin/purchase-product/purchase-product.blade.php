@@ -94,7 +94,7 @@
                                                     <div class="form-group row">
                                                         <label for="unit" class="col-sm-4 col-form-label">Sotre : </label>
                                                         <div class="col-sm-8">
-                                                            <select class="form-control " id="inventory_id" name="inventory_id" >
+                                                            <select class="form-control select2" id="inventory_id" name="inventory_id" >
                                                                 <option value="">Select One</option>                                          
                                                                 @foreach ($locations as $location)
                                                                 <option value="{{$location->id}}">{{$location->name}}</option>
@@ -108,7 +108,7 @@
                                                     <div class="form-group row">
                                                         <label for="unit" class="col-sm-4 col-form-label">Godown : </label>
                                                         <div class="col-sm-8">
-                                                            <select class="form-control " id="godown_id" name="godown_id" >
+                                                            <select class="form-control select2" id="godown_id" name="godown_id" >
                                                                 <option value="">Select One</option>                                          
                                                                 @foreach ($godowns as $godown)
                                                                 <option value="{{$godown->id}}">{{$godown->name}}</option>
@@ -162,7 +162,7 @@
                         <tbody id="table">
                             <tr>
                                 <td class="span3 supplier">
-                                        <select class="form-control   products_id" id="products_id_0" name="products_id[]" required="">
+                                        <select class="form-control select2  products_id" id="products_id_0" name="products_id[]" required="">
                                                 <option value="">Select One</option>                                          
                                                 @foreach ($products as $product)
                                                 <option value="{{$product->id}}">{{$product->product_name}}</option>
@@ -256,7 +256,7 @@ $(document).ready(function(){
             'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
         }
     });
-
+   
 
    
     var max = 1;
@@ -290,6 +290,10 @@ $(document).on("click","#addInput",function(e){
                                     '</td>'+
                             '</tr>'
       );
+
+      $("#table select").each(function(){
+        $(this).select2();
+      });
     max ++;
    
 })
@@ -550,8 +554,14 @@ $(document).on("keyup keypress keydown change", ".quantity", function() {
                     </div>
                 </div>`;
 
+
+
     $(document).on("submit","#insertPurchaseForm",function(e){
+
+
         e.preventDefault();
+          
+
         var frmData = $(this).serialize();
         $.ajax({
             url:"{{route('purchase.product')}}",

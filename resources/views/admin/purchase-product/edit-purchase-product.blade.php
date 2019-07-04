@@ -152,7 +152,7 @@
                     <table class="table table-bordered table-hover" id="purchaseTable">
                         <thead>
                              <tr>
-                                 <th class="text-center" width="20%">Item code<i class="text-danger">*</i></th> 
+                                 <th class="text-center" width="20%">Item code</th> 
                                       {{-- <th class="text-center">Stock/Qnt</th> --}}
                                     <th class="text-center">Qnty <i class="text-danger">*</i></th>
                                     <th class="text-center">Rate<i class="text-danger">*</i></th>
@@ -165,10 +165,12 @@
                             @foreach ($product_purchase_details as $purchase_details)
                             <tr>
                                 <td class="span3 supplier">
-                                        <select class="form-control select2 products_id" id="products_id_0" name="products_id[]" >
-                                                <option value="">Select One</option>                                          
+                                        <select readonly="readonly" class="form-control  products_id" id="products_id_0" name="products_id[]" >
+                                                                                         
                                                 @foreach ($products as $product)
-                                                <option value="{{$product->id}}" {{$purchase_details->product_id == $product->id ? 'selected' : ''}}>{{$product->product_name}}</option>
+                                                @if($purchase_details->product_id == $product->id)
+                                                <option value="{{$product->id}}" >{{$product->product_name}}</option>
+                                                @endif
                                                 @endforeach
                                                
                                             </select>                              

@@ -154,6 +154,7 @@
                         <thead>
                              <tr>
                                  <th class="text-center" width="20%"> Item Name</th> 
+                                      <th class="text-center">Size</th>
                                       <th class="text-center">Sell Qty</th>
                                     <th class="text-center">Return Qnty <i class="text-danger">*</i></th>
                                     <th class="text-center">Rate</th>
@@ -178,7 +179,22 @@
                                                         <input type="hidden" value="{{$product->id}}" name="product_id[]">
                                                     @endif
                                                 @endforeach
-                                    </td>                    
+                                    </td>  
+                                    <td class="span3 supplier">
+                                        <select readonly="readonly" class="form-control  product_size" required id="product_size" name="product_size[]" required="">
+                                               
+                                                @foreach ($productCft as $cft)
+                                                @foreach ($productGrade as $grade)
+                                                    @if($grade->id == $cft->grade_id)
+                                                    @if($invoice_detail->product_size == $cft->id)
+                                                    <option value="{{$cft->id}}">{{$cft->length.'x'.$cft->width.'x'.$cft->height.' '.$grade->name.' @'.$grade->price}}</option>
+                                                    @endif
+                                                    @endif
+                                                @endforeach
+                                                @endforeach
+                                               
+                                            </select>                              
+                                </td>                  
                                    <td class="wt">
                                             <input readonly="readonly" name="sell_quantity" type="text" id="available_quantity_0" class="form-control text-right stock_ctn_1" value="{{$invoice_detail->quantity}}" readonly="" autocomplete="off">
                                         </td>
@@ -206,7 +222,7 @@
                         <tfoot>
                                      <tr>
                                
-                                <td style="text-align:right;" colspan="4"><b>Total:</b></td>
+                                <td style="text-align:right;" colspan="5"><b>Total:</b></td>
                                 <td class="text-right">
                                     <input type="text" id="returnSubTotal" class="text-right form-control" name="total" value="" readonly="readonly" autocomplete="off">
                                 </td>
@@ -214,7 +230,7 @@
                             </tr>
                             <tr>
                                
-                                <td style="text-align:right;" colspan="3"><b>Cash Disount %</b></td>
+                                <td style="text-align:right;" colspan="4"><b>Cash Disount %</b></td>
                                 @php
                                     
                                             $total =  $invoice->total_discount_two +  $invoice->total_amount + $invoice->total_discount;
@@ -238,7 +254,7 @@
                             </tr>
                             <tr>
                                
-                                    <td style="text-align:right;" colspan="3"><b>Special  Disount %</b></td>
+                                    <td style="text-align:right;" colspan="4"><b>Special  Disount %</b></td>
                                          @php
                                     
                                             $total =  $invoice->total_discount_two +  $invoice->total_amount ;
@@ -265,7 +281,7 @@
                                 {{-- <td colspan="2">
                                     <input type="button" id="addInput" class="btn btn-info"  value="Add New Item" tabindex="9" autocomplete="off">
                                      </td> --}}
-                                <td style="text-align:right;" colspan="4"><b>Grand Total:</b></td>
+                                <td style="text-align:right;" colspan="5"><b>Grand Total:</b></td>
                                 <td class="text-right">
                                     <input type="text" id="sellGrandTotal" class="text-right form-control" name="sell_grand_total_price" value="" readonly="readonly" autocomplete="off">
                                 </td>

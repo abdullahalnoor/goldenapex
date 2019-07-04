@@ -47,7 +47,7 @@
                         <th> Grade</th>
                         
                         <th> Rate</th>
-                        <th> Action</th>
+                        {{-- <th> Action</th> --}}
                     </tr>
                 </thead>
                 <tbody>
@@ -62,7 +62,7 @@
                              @endforeach
                               
                               </td>
-                              @php($totalCft =round((($cft->length * $cft->width * $cft->height) / 1728),2))
+                              @php($totalCft = round((($cft->length * $cft->width * $cft->height) / 1728),2))
                              <td>{{$cft->length.'x'.$cft->width.'x'.$cft->height}}</td>
                              <td>{{$totalCft}}</td>
                              <td>
@@ -81,10 +81,10 @@
                              @endforeach 
                               </td>
                             
-                             <td>
-                                 <a class="btn btn-info btn-sm" href="{{ url('/product/cft/edit/'.$cft->id) }}"><i style="font-size: 16px;" class="fa fa-edit" data-toggle="tooltip" title="Update"></i></a>  
+                             {{-- <td> --}}
+                                 {{-- <a class="btn btn-info btn-sm" href="{{ url('/product/cft/edit/'.$cft->id) }}"><i style="font-size: 16px;" class="fa fa-edit" data-toggle="tooltip" title="Update"></i></a>   --}}
                                  {{-- <a class="btn btn-danger btn-sm "    href="{{ url('/product/cft/delete/'.$cft ->id) }}" ><i style="font-size: 16px;" class="fa fa-trash" data-toggle="tooltip" title="Delete"></i></a> --}}
-                            </td>
+                            {{-- </td> --}}
            
                     </tr>
                     @empty

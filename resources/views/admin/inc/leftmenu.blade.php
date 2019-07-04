@@ -262,10 +262,10 @@
       <ul class="sidebar-submenu">
         <li><a href="{{ url('/employee/add') }}"><i class="fa fa-circle-o"></i> Add Employee</a></li>
         <li><a href="{{ url('/employee/manage') }}"><i class="fa fa-circle-o"></i> Manage Employee</a></li>
-        <li><a href="{{ url('/employee/salary') }}"><i class="fa fa-circle-o"></i> Received Salary</a></li>
+        {{-- <li><a href="{{ url('/employee/salary') }}"><i class="fa fa-circle-o"></i> Received Salary</a></li>
         <li><a href="{{ url('employee/advanced') }}"><i class="fa fa-circle-o"></i> Received Advanced</a></li>
         <li><a href="{{ url('employee/payment') }}"><i class="fa fa-circle-o"></i> Payment Advanced</a></li>
-        <li><a href="{{ url('employee/report') }}"><i class="fa fa-circle-o"></i> Employee Report</a></li>
+        <li><a href="{{ url('employee/report') }}"><i class="fa fa-circle-o"></i> Employee Report</a></li> --}}
     </ul>
   </li>
 <!--       <li>
@@ -294,7 +294,7 @@
   </ul>
 </li> -->
 
-<li>
+{{-- <li>
     <a href="javaScript:void();" class="waves-effect">
       <i class="fa fa-money"></i>
         <span>Marketing</span> <i class="fa fa-angle-left pull-right"></i>
@@ -303,7 +303,7 @@
         <li><a href="{{ url('/marketing/order') }}"><i class="fa fa-circle-o"></i> Order Placement</a></li>
         <li><a href="{{ url('/marketing/due/collection') }}"><i class="fa fa-circle-o"></i> Due Collection</a></li>
       </ul>
-</li>
+</li> --}}
 
 
     {{-- <li>

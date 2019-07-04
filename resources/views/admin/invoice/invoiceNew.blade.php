@@ -509,24 +509,30 @@ $(document).on("click","#addInput",function(e){
 
     function  fetchProductPrice(val = null,id = null){
    
-
-        // invoice.fetch-product-price
-
-
         var  route  = "{{url('/invoice/fetch-product-price/')}}"+'/'+val;
-                    // console.log(route);
-
+                
                         $.get(route,function(data){
-                            console.log(data);
-                            // available_quantity_0
-                            // $("#"+id).parent().next().children().css('background-color','red');
-                        
-                            $("#"+id).parent().next().next().children().val(data);
-                            // parent().next().children()
-                            // console.log(data.purchase_qty);
-                            // $("#"+id).val(data.purchase_qty);
+
+                           
+                          
+                                $("#"+id).parent().next().next().children().val(data);
+                                var quantity = $("#"+id).parent().next().children().val();
+                                
+                                let total = parseInt(quantity) * parseInt(data);
+                                if(!isNaN(total) && total.length !==0) {
+                                $("#"+id).parent().next().next().next().children().val(total.toFixed(2));
+                                }else{
+                                    $("#"+id).parent().next().next().next().children().val(0);
+                                }
                             
+
+                            calculateTotal();
+                        })
+                        .fail(function(err){
+                            $("#"+id).parent().next().next().children().val(0);
+                            $("#"+id).parent().next().next().next().children().val(0);
                         });
+                        
     }
 
 
@@ -535,9 +541,9 @@ $(document).on("click","#addInput",function(e){
         e.preventDefault();
         var id = $(this).attr("id");
         var val = $(this).val();
-        // var ids = e.target.value;
-        // console.log(val);
+       
         fetchProductPrice(val,id);
+        calculateTotal();
 
     }) 
 
@@ -635,7 +641,9 @@ function calculateTotal() {
     $('#grandTotal').val(total.toFixed(2));
 
     var inwords = convertNumberToWords(total);
-    document.getElementById("inword").innerHTML = inwords;
+    if(inwords != ''){
+        document.getElementById("inword").innerHTML = inwords +' Tk Only';
+    }
   }
 
  

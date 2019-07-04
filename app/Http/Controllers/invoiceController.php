@@ -123,6 +123,13 @@ private function numberTowords(float $number)
     public function save(Request $request){
         
         // return $request->all();
+
+        $this->validate($request,[
+            'products_id.*' => 'required',
+            'product_size.*' => 'required',
+            'date' => 'required',
+        ]);
+
         $inputs = Input::except(['_token','customer_id','payment_type','inventory_id','status','invoice_details']);
         
         // check product availability 
@@ -168,6 +175,8 @@ private function numberTowords(float $number)
                 $total_price  = $request->product_quantity[$i] * $request->product_rate[$i] ;
                 $grand_total  += $total_price;
             }
+        }else{
+            return back();
         }
        
         //dis one
@@ -257,9 +266,12 @@ private function numberTowords(float $number)
         // return $invoice->total_amount;
         $invoice_details =  invoice_details::where('invoice_id',$invoice->id)->get();
         $customer_info = customer_info::all();
+        $productCft =  ProductCft::all();
+        $productGrade = ProductGrade::all();
         $products = Product::all();
         $locations = Location::all();
         $godowns = Godown::all();
+
         $lastInvoiceID = invoice::orderBy('id', 'DESC')->pluck('sell_invoice_no')->first();
         $inventoryId = invoice_details::where('invoice_id',$invoice->id)->first(['godown_id','inventory_id','direct_sell']);
         // return $inventoryId->direct_sell;
@@ -270,7 +282,7 @@ private function numberTowords(float $number)
     public function update(Request $request){
         
         // return $request->all();
-
+// 
         // return $request->all();
         $inputs = Input::except(['_token','customer_id','payment_type','inventory_id','status','invoice_details']);
         
@@ -342,15 +354,17 @@ private function numberTowords(float $number)
         
         $invoice->total_amount = $grand_total + $request->others_price;
         $invoice->save();
+        $invoice_details =  invoice_details::where('invoice_id',$invoice->id)->get();
+        // return $invoice_details[0];
 
         if(count($inputs) > 0){
             for($i = 0 ; $i < count($inputs['product_quantity']); $i++){
-                $invoice_details =  invoice_details::where('invoice_id',$invoice->id)->where('product_id',$request->product_id[$i])->first();
+                // $invoice_details =  invoice_details::where('invoice_id',$invoice->id)->where('product_id',$request->product_id[$i])->first();
             
 
-                $invoice_details->product_size = $request->product_size[$i];
-                $invoice_details->quantity = $request->product_quantity[$i];
-                $invoice_details->rate = $request->product_rate[$i];
+                $invoice_details[$i]->product_size = $request->product_size[$i];
+                $invoice_details[$i]->quantity = $request->product_quantity[$i];
+                $invoice_details[$i]->rate = $request->product_rate[$i];
                 $total_price = $request->product_quantity[$i] * $request->product_rate[$i];
                 
                 $discount_one = ($total_price * $request->discount_per)/100;
@@ -361,12 +375,12 @@ private function numberTowords(float $number)
 
                 $total_price = $total_price - $discount_two;
 
-                $invoice_details->discount = $discount_one  ;
-                $invoice_details->discount_two =  $discount_two ;
+                $invoice_details[$i]->discount = $discount_one  ;
+                $invoice_details[$i]->discount_two =  $discount_two ;
 
-                $invoice_details->total_price = $total_price;
+                $invoice_details[$i]->total_price = $total_price;
 
-                $invoice_details->save();
+                $invoice_details[$i]->save();
                 
             }
         }
@@ -412,6 +426,8 @@ private function numberTowords(float $number)
         $invoice_details =  invoice_details::where('invoice_id',$invoice->id)->get();
         $customer_info = customer_info::where('id',$invoice->customer_id)->first();
         $products = Product::all();
+        $productCft =  ProductCft::all();
+        $productGrade = ProductGrade::all();
         // $locations = Location::all();
         // $godowns = Godown::all();
         // $lastInvoiceID = invoice::orderBy('id', 'DESC')->pluck('sell_invoice_no')->first();

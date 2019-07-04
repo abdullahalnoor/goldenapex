@@ -186,39 +186,55 @@ Update Invoice
                     <table class="table table-bordered table-hover" id="purchaseTable">
                         <thead>
                              <tr>
-                                 <th class="text-center" width="20%">Select Item <i class="text-danger">*</i></th> 
-                                      <th class="text-center">Stock</th>
-                                    <th class="text-center">Qnty <i class="text-danger">*</i></th>
-                                    <th class="text-center">Rate<i class="text-danger">*</i></th>
-                                    <th class="text-center">Total</th>
-                                    {{-- <th class="text-center">Action</th> --}}
+                                <th class="text-center" width="20%">Select Item <i class="text-danger">*</i></th> 
+                                      
+                                <th class="text-center" width="20%">Size <i class="text-danger">*</i></th>
+                                <th class="text-center">Qyt<i class="text-danger">*</i></th>
+                                <th class="text-center">Rate</th>
+                                <th class="text-center">Total</th>
+                                {{-- <th class="text-center">Action</th> --}}
                                 </tr>
                         </thead>
                         <tbody id="table">
                             @foreach ($invoice_details as $invoice_detail)
                             <tr>
                                     <td class="span3 supplier">
-                                            <select class="form-control products_id" id="products_id_0" name="product_id[]" >
-                                                    <option value="">Select One</option>                                          
+                                            <select readonly="readonly" class="form-control products_id" id="products_id_0" name="product_id[]" >
+                                                                                             
                                                     @foreach ($products as $product)
-                                                    <option value="{{$product->id}}" {{$product->id == $invoice_detail->product_id ? 'selected' : ''}}>{{$product->product_name}}</option>
+                                                    @if($product->id == $invoice_detail->product_id)
+                                                   
+                                                    <option value="{{$product->id}}" >{{$product->product_name}}</option>
+                                                    @endif
                                                     @endforeach
                                                    
                                                 </select>                              
                                     </td>                    
-                                   <td class="wt">
-                                            <input type="text" id="available_quantity_0" class="form-control text-right stock_ctn_1" value="{{$invoice_detail->availableQty($invoice_detail)}}" readonly="" autocomplete="off">
-                                        </td>
+                                    <td class="span3 supplier">
+                                        <select readonly="readonly" class="form-control  product_size" required id="product_size" name="product_size[]" required="">
+                                               
+                                                @foreach ($productCft as $cft)
+                                                @foreach ($productGrade as $grade)
+                                                    @if($grade->id == $cft->grade_id)
+                                                    @if($invoice_detail->product_size == $cft->id)
+                                                    <option value="{{$cft->id}}">{{$cft->length.'x'.$cft->width.'x'.$cft->height.' '.$grade->name.' @'.$grade->price}}</option>
+                                                    @endif
+                                                    @endif
+                                                @endforeach
+                                                @endforeach
+                                               
+                                            </select>                              
+                                </td> 
                                         <td class="text-right">
                                             <input type="text" name="product_quantity[]" id="cartoon_1" class="form-control quantity text-right "  value="{{$invoice_detail->quantity}}" min="0" tabindex="6" autocomplete="off">
                                         </td>
                                         <td class="test">
-                                            <input type="text" name="product_rate[]"  id="product_rate_1" class="form-control  product_rate text-right"value="{{$invoice_detail->rate}}" min="0" tabindex="7" autocomplete="off">
+                                            <input type="text" readonly="readonly" name="product_rate[]"  id="product_rate_1" class="form-control  product_rate text-right"value="{{$invoice_detail->rate}}" min="0" tabindex="7" autocomplete="off">
                                         </td>
                                        
     
                                         <td class="text-right">
-                                            <input class="form-control total_price text-right" type="text" name="total_price[]" id="total_price_1" value="{{$invoice_detail->quantity * $invoice_detail->quantity}}" readonly="readonly" autocomplete="off">
+                                            <input class="form-control total_price text-right" type="text" name="total_price[]" id="total_price_1" value="{{$invoice_detail->total_price }}" readonly="readonly" autocomplete="off">
                                         </td>
                                         {{-- <td>
     
@@ -243,11 +259,15 @@ Update Invoice
                                
                                 <td style="text-align:right;" colspan="3"><b>Cash Disount %</b></td>
                                 @php
-                                    
+                                            $total_discount = 0;
+                                            $total = 1;
                                             $total =  $invoice->total_discount_two +  $invoice->total_amount + $invoice->total_discount;
-                                            $total = $total - $invoice->others_price;
-                                            $discount = $invoice->total_discount /$total ;
-                                            $total_discount = $discount * 100;
+                                            
+                                                 $total = $total - $invoice->others_price;
+                                            if($total != 0){     
+                                                $discount = $invoice->total_discount /$total ;
+                                                $total_discount = $discount * 100;
+                                            }
                                     @endphp
                                 <td><input type="text" id="discount" name="discount_per" class="form-control text-right" value="{{round($total_discount,2)}}" autocomplete="off"></td>
                                 <td class="text-right">
@@ -259,11 +279,15 @@ Update Invoice
                                
                                     <td style="text-align:right;" colspan="3"><b>Special  Disount %</b></td>
                                     @php
-                                    
+                                            $total_discount_two = 0 ;
+                                            $total = 1;
                                             $total =  $invoice->total_discount_two +  $invoice->total_amount ;
-                                            $total = $total - $invoice->others_price;
-                                            $discount = $invoice->total_discount_two /$total ;
-                                            $total_discount_two = $discount * 100;
+                                            
+                                                $total = $total - $invoice->others_price;
+                                          if($total != 0){
+                                                $discount = $invoice->total_discount_two /$total ;
+                                                $total_discount_two = $discount * 100;
+                                            }
                                          @endphp
                                     <td><input type="text" id="multidiscount" name="multi_dis" class="form-control text-right"  value="{{round($total_discount_two,2)}}" autocomplete="off"></td>
                                     <td class="text-right">
@@ -342,9 +366,18 @@ $(document).on("click","#addInput",function(e){
                                                 '@endforeach'+                                       
                                             '</select>' +                  
                                 '</td>'+                            
-                              ' <td class="wt">'+
-                                        '<input type="text" id="'+max+'" class="form-control text-right stock_ctn_1" placeholder="0.00" readonly="" autocomplete="off">'+
-                                    '</td>'+
+                                '<td class="span3 supplier">'+
+                                   ' <select class="form-control select2 product_size" required id="product_size_'+max+'" name="product_size[]" required="">'+
+                                           ' <option value="">Select One</option>'+
+                                            '@foreach ($productCft as $cft)'+
+                                            '@foreach ($productGrade as $grade)'+
+                                                '@if($grade->id == $cft->grade_id)'+
+                                                '<option value="{{$cft->id}}">{{$cft->length.'x'.$cft->width.'x'.$cft->height.' '.$grade->name.' @'.$grade->price}}</option>'+
+                                                '@endif'+
+                                            '@endforeach'+
+                                            '@endforeach'+
+                                        '</select>'  +                            
+                            '</td>' +
                                     '<td class="text-right">'+
                                         '<input type="text" name="product_quantity[]" id="cartoon_1" class="form-control quantity text-right "  placeholder="0.00" value="" min="0" tabindex="6" autocomplete="off">'+
                                     '</td>'+
