@@ -50,19 +50,19 @@
       <li>
         <a href="javaScript:void();" class="waves-effect">
           <i class="ti-bag"></i>
-          <span>Item </span> <i class="fa fa-angle-left pull-right"></i>
+          <span>Product </span> <i class="fa fa-angle-left pull-right"></i>
         </a>
         <ul class="sidebar-submenu">
-        <li><a href="{{ url('/product/add') }}"><i class="fa fa-circle-o"></i> Add Item</a></li>
-        <li><a href="{{ url('/product/manage') }}"><i class="fa fa-circle-o"></i> Manage Item</a></li>
+        <li><a href="{{ url('/product/add') }}"><i class="fa fa-circle-o"></i> Add Product</a></li>
+        <li><a href="{{ url('/product/manage') }}"><i class="fa fa-circle-o"></i> Manage Product</a></li>
         {{-- <li><a href="{{ url('/product/location') }}"><i class="fa fa-circle-o"></i> Inventory Location</a></li>
         <li><a href="{{ url('/product/report') }}"><i class="fa fa-circle-o"></i> Inventory Report</a></li> --}}
         
-        <li><a href="{{ url('/product/grade/add') }}"><i class="fa fa-circle-o"></i> Add Item Grade</a></li>
-        <li><a href="{{ url('/product/grade/manage') }}"><i class="fa fa-circle-o"></i> Manage Item Grade</a></li>
+        <li><a href="{{ url('/product/grade/add') }}"><i class="fa fa-circle-o"></i> Add Product Grade</a></li>
+        <li><a href="{{ url('/product/grade/manage') }}"><i class="fa fa-circle-o"></i> Manage Product Grade</a></li>
           
-        <li><a href="{{ url('/product/cft/add') }}"><i class="fa fa-circle-o"></i> Add Item CFT</a></li>
-        <li><a href="{{ url('/product/cft/manage') }}"><i class="fa fa-circle-o"></i> Manage Item CFT</a></li>
+        <li><a href="{{ url('/product/cft/add') }}"><i class="fa fa-circle-o"></i> Add Product CFT</a></li>
+        <li><a href="{{ url('/product/cft/manage') }}"><i class="fa fa-circle-o"></i> Manage Product CFT</a></li>
      
      
       </ul>

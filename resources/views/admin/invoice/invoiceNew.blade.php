@@ -53,7 +53,7 @@
                                         </div>
                                         <div class="col-sm-6">
                                             <div class="form-group row">
-                                                <label for="date" class="col-sm-4 col-form-label">Sell Date :  <i class="text-danger">*</i></label>
+                                                <label for="date" class="col-sm-4 col-form-label">Sales Date :  <i class="text-danger">*</i></label>
                                                 <div class="col-sm-8">
                                                     <input type="date"  class="form-control"name="date"   required="" />
                                                 </div>
@@ -146,7 +146,7 @@
     
                                                 <div class="col-sm-6">
                                                         <div class="form-group row">
-                                                            <label for="direct_sell" class="col-sm-4 col-form-label">Direct Sell : </label>
+                                                            <label for="direct_sell" class="col-sm-4 col-form-label">Direct Sales : </label>
                                                             <div class="col-sm-8">
                                                                 <select class="form-control " id="direct_sell" name="direct_sell" >
                                                                     <option value="">Select One</option>                                          

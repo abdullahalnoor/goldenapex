@@ -135,8 +135,9 @@
                 <table>
                     <tr>
                         <th style="width: 5%;">Sl</th>
-                        <th style="width: 40%;">Item </th>
-                        <th style="width: 15%;">quantity</th>
+                        <th style="width: 15%;">Item </th>
+                        <th style="width: 25%;">Description </th>
+                        <th style="width: 15%;">Quantity</th>
                        
                     </tr>
             
@@ -149,12 +150,15 @@
                       @foreach ($invoice_details as $detail)
                       <tr>
                           <td style="width: 5%;">{{$i++}}</td>
-                          <td style="width: 40%;text-align:left">
-                            @foreach ($products as $product)
+                          <td style="width: 15%;text-align:left">
+                                @foreach ($products as $product)
                                 @if ($product->id == $detail->product_id)
                                     {{$product->product_name}}
                                 @endif
                             @endforeach
+                        </td>
+                          <td style="width: 25%;text-align:left">
+                           
                             @foreach ($productCft as $cft)
                             @foreach ($productGrade as $grade)
                                 @if($grade->id == $cft->grade_id)

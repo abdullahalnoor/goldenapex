@@ -47,7 +47,7 @@
             border-left: 1px solid black;
             border-bottom: 1px solid black;
             text-align: left;
-            padding: 2px;
+            padding: 2px; 
             text-align: center;
         }
 
@@ -81,7 +81,19 @@
             text-align: right;
         }
 
-   
+
+        table:nth-child(4) {
+            font-family: arial, sans-serif;
+            border-collapse: collapse;
+            width: 100%;
+        }
+        table:nth-child(4) td {
+            border-right: 1px solid black;
+            border-left: 1px solid black;
+            border-bottom: 1px solid black;
+            text-align: left;
+            padding: 2px; 
+        }
 
         .row {
             width: 100%;
@@ -105,12 +117,12 @@
                                 Address : 68/69 CONCEPT TOWER ,GREEN ROAD,DHAKA-1205 <br />
                                
                             </address>
-                            <h4 style="text-transform:uppercase;margin-top: 5px;font-size:18px">Sells Invoice</h4>
+                            <h4 style="text-transform:uppercase;margin-top: 5px;font-size:18px">Sales Invoice</h4>
                         </td>
                     </tr>
                     <tr style="width:100%;text-align: center">
                         <td style="text-align: left">Invoice No : {{$invoice->sell_invoice_no}} </td>
-                        <td style="text-align: right" colspan="4">Date : {{date("d/m/Y")}} </td>
+                        <td style="text-align: right" colspan="4">Date : {{date("d/m/Y",strtotime($invoice->updated_at))}} </td>
                     </tr>
                     <tr style="width:100%;text-align: center">
                         <td style="text-align: left" colspan="3">
@@ -135,8 +147,10 @@
                 <table>
                     <tr>
                         <th style="width: 5%;">Sl</th>
-                        <th style="width: 40%;">Description </th>
-                        <th style="width: 15%;">Quantity</th>
+                        <th style="width: 15%;">Item </th>
+                        <th style="width: 20%;">Description </th>
+                        <th style="width: 10%;">CFT</th>
+                        <th style="width: 10%;">Quantity</th>
                         <th style="width: 15%;">Unit Price</th>
                         <th style="width: 25%;">Amount</th>
                     </tr>
@@ -146,16 +160,21 @@
                       $i = 1;
                       
                       $subTotal = 0;
+                      $totalQuantity = 0;
+                      $totaltCft = 0;
                       @endphp
                       @foreach ($invoice_details as $detail)
                       <tr>
                           <td style="width: 5%;">{{$i++}}</td>
-                          <td style="width: 40%;text-align:left">
+                          <td style="width: 15%;text-align:left">
                             @foreach ($products as $product)
-                                @if ($product->id == $detail->product_id)
-                                    {{$product->product_name}}
-                                @endif
-                            @endforeach
+                            @if ($product->id == $detail->product_id)
+                                {{$product->product_name}}
+                            @endif
+                        @endforeach
+                        </td>
+                          <td style="width: 20%;text-align:left">
+                           
                             @foreach ($productCft as $cft)
                             @foreach ($productGrade as $grade)
                                 @if($grade->id == $cft->grade_id)
@@ -166,11 +185,26 @@
                             @endforeach
                             @endforeach
                         </td>
-                          <td style="width: 15%;">{{$detail->quantity}}</td>
+                        
+                          <td style="width: 5%;">
+                            {{-- @php($perProductCft = 0) --}}
+                            
+                            @foreach ($productCft as $cft)
+                            
+                                @if($detail->product_size == $cft->id)
+                                @php($perProductCft = round((($cft->length * $cft->width * $cft->height) / 1728),2))
+                                 {{$perProductCft}}
+                                @endif
+                               
+                            @endforeach
+                            @php($totaltCft +=  $perProductCft)
+                         </td>
+                          <td style="width: 10%;">{{$detail->quantity}}</td>
                           <td style="width: 15%;">{{$detail->rate}}</td>
                           <td style="width: 25%;">{{ $total = $detail->quantity * $detail->rate }}</td>
                       </tr>
                       @php($subTotal += $total )
+                      @php($totalQuantity += $detail->quantity )
                     
                       @endforeach
                     </tbody>
@@ -181,13 +215,19 @@
                     <tbody>
             
                         <tr>
-                            <td style="text-align: right" colspan="4">Sub Total :</td>
+                                
+                                
+                                
+                            <td colspan="1" style="text-align: right;">Total CFT & Quantity</td>
+                            <td style="width:10%">{{$totaltCft}}</td>
+                            <td style="width:10%">{{$totalQuantity}}</td>
+                            <td style="text-align: right;width:15%" colspan="2">Sub Total :</td>
                             <td>{{$subTotal}}</td>
                         </tr>
             
                         <tr>
                         
-                                <td style="text-align: right" colspan="4">Discount :</td>
+                                <td style="text-align: right" colspan="5">Discount :</td>
                            
                                                     
                             
@@ -199,7 +239,7 @@
             
                             <tr>
                         
-                                    <td style="text-align: right" colspan="4">Special Discount :</td>
+                                    <td style="text-align: right" colspan="5">Special Discount :</td>
                                    
                                                     
                                    
@@ -210,7 +250,7 @@
                                 </tr>
                                 <tr>
                         
-                                        <td style="text-align: right" colspan="1">Miscellaneous :</td>
+                                        <td style="text-align: right" colspan="2">Miscellaneous :</td>
                                         <td style="text-align: right" colspan="3">{{$invoice->others_bill}} : </td>
                                        
                                                         
@@ -223,17 +263,30 @@
                        
                         
                         <tr>
-                            <td style="text-align: right" colspan="4">Grand Total :</td>
+                            <td style="text-align: right" colspan="5">Grand Total :</td>
                             <td style="width: 25%;">{{ round($invoice->total_amount,2)}}</td>
                         </tr>
-                        <tr>
-                            <td style="text-align: right" >In Word :</td>
-                            <td  style="text-align: left;text-transform:capitalize"  colspan="4">  {{ $inWordTK}} Only</td>
-                        </tr>
+                       
                         
                     </tbody>
                   
                 </table>
+
+
+
+
+                <table>
+                        <tbody>
+
+                            <tr>
+                                <td style="text-align: right;width:10%" >In Words :</td>
+                                <td  style="text-align: left;text-transform:capitalize;width:90%"  colspan="5">  {{ $inWordTK}} Only</td>
+                            </tr>
+                            
+                        </tbody>
+                      
+                    </table>
+                
     </main>
    
    <div style="position: fixed;bottom:50px;">

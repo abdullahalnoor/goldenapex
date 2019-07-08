@@ -5,7 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\customer_info;
 use App\Location;
-use App\Product;
+use App\product;
 use App\invoice;
 use App\invoice_details;
 use App\Stock;
@@ -82,7 +82,7 @@ private function numberTowords(float $number)
     }
 
     public function create() {
-        $products = Product::all();
+        $products = product::all();
         $locations = Location::all();
         $customer_info = customer_info::all();
         $productCft =  ProductCft::all();
@@ -127,6 +127,7 @@ private function numberTowords(float $number)
         $this->validate($request,[
             'products_id.*' => 'required',
             'product_size.*' => 'required',
+            'product_quantity.*' => 'required',
             'customer_id' => 'required',
             'date' => 'required',
             'invoice_details' => 'required',
@@ -270,7 +271,7 @@ private function numberTowords(float $number)
         $customer_info = customer_info::all();
         $productCft =  ProductCft::all();
         $productGrade = ProductGrade::all();
-        $products = Product::all();
+        $products = product::all();
         $locations = Location::all();
         $godowns = Godown::all();
 
@@ -284,8 +285,16 @@ private function numberTowords(float $number)
     public function update(Request $request){
         
         // return $request->all();
-// 
-        // return $request->all();
+
+        $this->validate($request,[
+            'products_id.*' => 'required',
+            'product_size.*' => 'required',
+            'product_quantity.*' => 'required',
+            'customer_id' => 'required',
+            'date' => 'required',
+            'invoice_details' => 'required',
+        ]);
+
         $inputs = Input::except(['_token','customer_id','payment_type','inventory_id','status','invoice_details']);
         
 
