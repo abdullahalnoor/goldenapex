@@ -23,6 +23,8 @@ class CreateInvoiceDetailsTable extends Migration
             $table->integer('product_size');
             $table->integer('quantity');
             $table->float('rate',30,2);
+            $table->float('cft',20,2);
+            $table->float('grade_price',20,2);
             
             $table->float('total_price');	
             $table->float('discount',2)->nullable();

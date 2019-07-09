@@ -341,16 +341,20 @@ class ProductPurchaseController extends Controller
             'locations' => $locations,
             'godowns' => $godowns,
             'newInvoiceID' => $newInvoiceID,
+           
         ]);
     }
 
     public function savePurchaseProductIfo(Request $request){
+      
 
         $this->validate($request,[
             'supplier_id' => 'required',
             'purchase_date' => 'required',
             'grand_total_amount' => 'required',
             'purchase_details' => 'required',
+            'inventory_id' => 'required_without_all:godown_id',
+            'godown_id' => 'required_without_all:inventory_id',
         ]);
        
         if(!empty($request->inventory_id && !empty($request->godown_id))){

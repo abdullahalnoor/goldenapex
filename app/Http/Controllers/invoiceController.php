@@ -123,6 +123,7 @@ private function numberTowords(float $number)
     public function save(Request $request){
         
         // return $request->all();
+      
 
         $this->validate($request,[
             'products_id.*' => 'required',
@@ -131,6 +132,9 @@ private function numberTowords(float $number)
             'customer_id' => 'required',
             'date' => 'required',
             'invoice_details' => 'required',
+            'inventory_id' => 'required_without_all:godown_id,direct_sell',
+            'godown_id' => 'required_without_all:inventory_id,direct_sell',
+            'direct_sell' => 'required_without_all:inventory_id,godown_id',
         ]);
 
         $inputs = Input::except(['_token','customer_id','payment_type','inventory_id','status','invoice_details']);
@@ -208,10 +212,22 @@ private function numberTowords(float $number)
                 }else{
                     $invoice_details->direct_sell    = $request->direct_sell;
                 }
+                
+
+                $invoice_details->product_size = $request->product_size[$i];
+
+                $productCft =  ProductCft::find($request->product_size[$i]);
+                $productGrade = ProductGrade::find($productCft->grade_id);
+
+
+                $totalCft =round((($productCft->length * $productCft->width * $productCft->height) / 1728),2);
+                $invoice_details->grade_price = $productGrade->price;
+                $invoice_details->cft =  $totalCft;
+
 
                 $invoice_details->invoice_id = $invoice->id;
                 $invoice_details->product_id = $request->products_id[$i];
-                $invoice_details->product_size = $request->product_size[$i];
+                
                 $invoice_details->quantity = $request->product_quantity[$i];
                 $invoice_details->rate = $request->product_rate[$i];
                 $total_price = $request->product_quantity[$i] * $request->product_rate[$i];
@@ -373,7 +389,18 @@ private function numberTowords(float $number)
                 // $invoice_details =  invoice_details::where('invoice_id',$invoice->id)->where('product_id',$request->product_id[$i])->first();
             
 
+
                 $invoice_details[$i]->product_size = $request->product_size[$i];
+
+                $productCft =  ProductCft::find($request->product_size[$i]);
+                $productGrade = ProductGrade::find($productCft->grade_id);
+
+
+                $totalCft =round((($productCft->length * $productCft->width * $productCft->height) / 1728),2);
+                $invoice_details->grade_price = $productGrade->price;
+                $invoice_details->cft =  $totalCft;
+
+               
                 $invoice_details[$i]->quantity = $request->product_quantity[$i];
                 $invoice_details[$i]->rate = $request->product_rate[$i];
                 $total_price = $request->product_quantity[$i] * $request->product_rate[$i];

@@ -21,12 +21,12 @@ class productController extends Controller
     public function save(Request $request){
 
     	$products = new product();
-    	$products->category_id = $request->category_id;
+    	// $products->category_id = $request->category_id;
     	$products->product_name = $request->product_name;
-    	$products->product_code = $request->product_code;
-    	$products->purchase_price = $request->purchase_price;
-    	$products->sale_price = $request->sale_price;
-    	$products->status = $request->status;
+    	// $products->product_code = $request->product_code;
+    	// $products->purchase_price = $request->purchase_price;
+    	// $products->sale_price = $request->sale_price;
+    	// $products->status = $request->status;
     	$products->save();
 
     	return redirect('/product/manage')->with('message','Product Added Successfully');
@@ -51,12 +51,12 @@ class productController extends Controller
 
     public function update(Request $request){
         $product =  product::find($request->product_id);
-    	$product->category_id = $request->category_id;
+    	// $product->category_id = $request->category_id;
     	$product->product_name = $request->product_name;
-    	$product->product_code = $request->product_code;
-    	$product->purchase_price = $request->purchase_price;
-    	$product->sale_price = $request->sale_price;
-    	$product->status = $request->status;
+    	// $product->product_code = $request->product_code;
+    	// $product->purchase_price = $request->purchase_price;
+    	// $product->sale_price = $request->sale_price;
+    	// $product->status = $request->status;
     	$product->save();
 
     	return redirect('/product/manage')->with('message','Product Updated Successfully');

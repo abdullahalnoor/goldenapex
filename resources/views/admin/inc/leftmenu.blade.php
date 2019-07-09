@@ -20,7 +20,7 @@
         </ul>
       </li>  
 
-      <li>
+      {{-- <li>
         <a href="javaScript:void();" class="waves-effect">
           <i class="ti-tag"></i>
           <span>Category</span> <i class="fa fa-angle-left pull-right"></i>
@@ -29,7 +29,7 @@
   		  <li><a href="{{ url('/category/save') }}"><i class="fa fa-circle-o"></i> Add Category</a></li>
   		  <li><a href="{{ url('/category/manage') }}"><i class="fa fa-circle-o"></i> Manage Category</a></li>
         </ul>
-      </li>
+      </li> --}}
 
       <li>
         <a href="javaScript:void();" class="waves-effect">

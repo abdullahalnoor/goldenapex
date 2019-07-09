@@ -122,7 +122,7 @@
                     </tr>
                     <tr style="width:100%;text-align: center">
                         <td style="text-align: left">Invoice No : {{$invoice->sell_invoice_no}} </td>
-                        <td style="text-align: right" colspan="4">Date : {{date("d/m/Y",strtotime($invoice->updated_at))}} </td>
+                        <td style="text-align: right" colspan="4">Date : {{date("d/m/Y",strtotime($invoice->created_at))}} </td>
                     </tr>
                     <tr style="width:100%;text-align: center">
                         <td style="text-align: left" colspan="3">
@@ -189,14 +189,14 @@
                           <td style="width: 5%;">
                             {{-- @php($perProductCft = 0) --}}
                             
-                            @foreach ($productCft as $cft)
+                           
                             
-                                @if($detail->product_size == $cft->id)
-                                @php($perProductCft = round((($cft->length * $cft->width * $cft->height) / 1728),2))
+                                
+                                @php($perProductCft = round($detail->cft,2))
                                  {{$perProductCft}}
-                                @endif
                                
-                            @endforeach
+                               
+                           
                             @php($totaltCft +=  $perProductCft)
                          </td>
                           <td style="width: 10%;">{{$detail->quantity}}</td>

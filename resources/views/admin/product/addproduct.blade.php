@@ -35,7 +35,7 @@
                         @csrf
                             <div class="panel-body">
                                     <div class="row">
-                                        <div class="col-sm-6">
+                                        {{-- <div class="col-sm-6">
                                             <div class="form-group row">
                                                 <label for="category_id" class="col-sm-4 col-form-label">Category : <i class="text-danger">*</i> </label>
                                                 <div class="col-sm-8">
@@ -47,10 +47,10 @@
                                                     </select>
                                                 </div>
                                             </div>
-                                        </div>
-                                        <div class="col-sm-6">
+                                        </div> --}}
+                                        <div class="col-sm-12">
                                             <div class="form-group row">
-                                                <label for="product_name" class="col-sm-4 col-form-label">Product Name : <i class="text-danger">*</i> </label>
+                                                <label for="product_name" class="col-sm-2 col-form-label">Product Name : <i class="text-danger">*</i> </label>
                                                 <div class="col-sm-8">
                                                     <input type="text"  class="form-control"name="product_name" placeholder="Product Name" required=""  />
                                                 </div>
@@ -59,7 +59,7 @@
             
                                     </div>
             
-                                    <div class="row">
+                                    {{-- <div class="row">
                                         <div class="col-sm-6">
                                             <div class="form-group row">
                                                 <label for="product_code" class="col-sm-4 col-form-label">Product Code : <i class="text-danger">*</i>  </label>
@@ -76,8 +76,8 @@
                                                 </div>
                                             </div>
                                         </div>
-                                    </div>                        
-                                    <div class="row">
+                                    </div>                         --}}
+                                    {{-- <div class="row">
                                         <div class="col-sm-6">
                                             <div class="form-group row">
                                                 <label for="sale_price" class="col-sm-4 col-form-label">Sale Price : <i class="text-danger">*</i> </label>
@@ -99,7 +99,7 @@
                                             </div>
                                         </div>
                                     </div>
-                                  
+                                   --}}
                                     
             
                                     <br>
