@@ -15,6 +15,7 @@ use App\ProductGrade;
 use App\ProductCft;
 use Illuminate\Support\Facades\Input;
 use PDF;
+use App\CustomerPayment;
 
 class invoiceController extends Controller
 {
@@ -200,6 +201,15 @@ private function numberTowords(float $number)
         $invoice->total_amount = $grand_total + $request->others_price ;
         $invoice->save();
 
+        $customerPayment = new CustomerPayment();
+        
+        $customerPayment->payment_total = $invoice->total_amount;
+        $customerPayment->customer_id =  $request->customer_id; 
+        $customerPayment->invoice_id =   $invoice->id;
+        $customerPayment->date =   $request->date;
+        $customerPayment->type =   0; // 0 mean debt payment
+        $customerPayment->save();
+
         if(count($inputs) > 0){
             for($i = 0 ; $i < count($inputs['product_quantity']); $i++){
                 $invoice_details = new invoice_details();
@@ -381,6 +391,18 @@ private function numberTowords(float $number)
         
         $invoice->total_amount = $grand_total + $request->others_price;
         $invoice->save();
+
+
+        $customerPayment =  CustomerPayment::where('invoice_id', $invoice->id)->first();
+        
+        $customerPayment->payment_total = $invoice->total_amount;
+        $customerPayment->customer_id =  $request->customer_id; 
+        $customerPayment->invoice_id =   $invoice->id;
+        $customerPayment->date =   $request->date;
+        $customerPayment->type =   0; // 0 mean debt payment
+        $customerPayment->save();
+
+
         $invoice_details =  invoice_details::where('invoice_id',$invoice->id)->get();
         // return $invoice_details[0];
 

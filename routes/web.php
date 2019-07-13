@@ -123,6 +123,14 @@ Route::post('/customer/update','customerController@update');
 Route::get('/customer/delete/{id}', 'customerController@delete');
 Route::get('customer/credit', 'customerController@managecredit');
 Route::get('/customer/paid', 'customerController@managepaid');
+
+// add cutomer payment
+
+Route::get('/customer/add-payment', 'customerController@addCustomerPayment')->name('customer.add-payment');
+Route::post('/customer/add-payment', 'customerController@saveCustomerPayment');
+Route::get('/customer/detail/{id}', 'customerController@fetchCustomerDetail')->name('fetch.customer.detail');
+
+
 /*end customer*/
 
 

@@ -4,6 +4,8 @@ namespace App\Http\Controllers;
 
 use App\customer_info;
 use Illuminate\Http\Request;
+use App\CustomerPayment;
+use App\invoice;
 
 class customerController extends Controller
 {
@@ -65,4 +67,40 @@ class customerController extends Controller
         $customer_info = customer_info::all();
         return view('admin.customer.paidcustomer', get_defined_vars());
     }
+
+
+    public function addCustomerPayment(){
+        $customer_info = customer_info::all();
+
+       
+
+        return view('admin.Customer.customer-payment', get_defined_vars());
+    }
+
+
+    public function fetchCustomerDetail($id){
+        $customer_detail = customer_info::find($id);
+        $customerPayment = CustomerPayment::where('customer_id',$id)->get();
+        $paidAmount = $customerPayment->where('type',1)->sum('payment_total');
+        $balance = $customerPayment->where('type',0)->sum('payment_total');
+        // return $balance;
+        $data = [
+            'customer'=> $customer_detail,
+            'paidAmount'=> $paidAmount,
+            'balance'=> $balance,
+        ] ;
+        return $data;
+    }
+
+    public function saveCustomerPayment(Request $request){
+        $customerPayment = new CustomerPayment();
+        
+        $customerPayment->payment_total = $invoice->total_amount;
+        $customerPayment->customer_id =  $request->customer_id; 
+        $customerPayment->invoice_id =   $invoice->id;
+        $customerPayment->date =   $request->date;
+        $customerPayment->type =   1; // 1 mean credit payment
+        $customerPayment->save();
+    }
+
 }
