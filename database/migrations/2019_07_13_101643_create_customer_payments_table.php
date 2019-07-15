@@ -20,7 +20,7 @@ class CreateCustomerPaymentsTable extends Migration
             $table->float('payment_total',100,2);
             $table->date('date');
             $table->tinyInteger('type');
-            $table->tinyInteger('payment_type')->nullable();
+            $table->tinyInteger('payment_by')->nullable();
             $table->timestamps();
         });
     }

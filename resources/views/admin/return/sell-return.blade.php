@@ -238,11 +238,18 @@
                                     @endphp
 
                                     @if ($total != 0)
-                                     @php
-                                         $total = $total - $invoice->others_price;
-                                            $discount = $invoice->total_discount /$total ;
-                                            $total_discount = $discount * 100;
-                                     @endphp   
+                                        @php
+                                            $total = $total - $invoice->others_price;
+                                            
+                                        @endphp   
+                                        @if ($total != 0)
+                                            @php
+                                                $discount = $invoice->total_discount /$total ;
+                                                $total_discount = $discount * 100;
+                                            
+                                            @endphp
+                                        
+                                        @endif  
                                     @endif
 
 
@@ -262,11 +269,16 @@
                                          @endphp
 
                                          @if($total != 0)
-                                         @php
-                                         $total = $total - $invoice->others_price;
-                                            $discount = $invoice->total_discount_two /$total ;
-                                            $total_discount_two = $discount * 100;
+                                            @php
+                                            $total = $total - $invoice->others_price;
                                             @endphp
+                                            @if($total != 0)
+                                            @php
+                                                $discount = $invoice->total_discount_two /$total ;
+                                                $total_discount_two = $discount * 100;
+                                               
+                                                @endphp
+                                            @endif
                                          @endif
 
                                     <td><input readonly="readonly" type="text" id="multidiscount" name="multi_dis" class="form-control text-right"  value="{{round($total_discount_two,2)}}" autocomplete="off"></td>

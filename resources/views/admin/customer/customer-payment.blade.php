@@ -82,7 +82,7 @@
                                <div class="row text-center">
                                 <label for="balance" class="col-sm-3 col-form-label">Balance </label>
                                 <div class="col-sm-5">
-                                    <input class="form-control" readonly name ="balance" id="balance" type="text"   >
+                                    <input class="form-control" readonly  id="balance" type="text"   >
                                </div>
                             </div>
                             </div>
@@ -105,9 +105,9 @@
                         <div class="form-group row ">
                             <div class="col-sm-12">
                                <div class="row text-center">
-                                <label for="due" class="col-sm-3 col-form-label">Due  </label>
+                                <label for="due" class="col-sm-3 col-form-label">Due/Advanced </label>
                                 <div class="col-sm-5">
-                                    <input class="form-control" readonly name ="due" id="due" type="text"   >
+                                    <input class="form-control" readonly  id="due" type="number"   >
                                </div>
                             </div>
                             </div>
@@ -146,12 +146,14 @@
             });
 
             var balance = 0;
+            var due = 0;
+            var receive_amount = 0;
 
             $(document).on("change keyup keypress keydown","#customer_id",function(e){
                 const customerId = e.target.value;
              
 
-                var route = "{{url('/customer/detail/')}}"+'/'+customerId;
+                var route = "{{url('/customer/payment-detail/')}}"+'/'+customerId;
 
                 $.get(route,function(data){
 
@@ -160,9 +162,32 @@
                     $("#customer_mobile").val(data.customer.customer_mobile);
                     $("#customer_address").val(data.customer.customer_address);
                     $("#balance").val(balance);
+                    calculateDue();
                 });
 
             })
+           
+            $(document).on("change keyup keypress keydown","#receive_amount",function(e){
+             
+                calculateDue();
+
+            })
+
+         
+            function calculateDue(){
+                receive_amount =  $("#receive_amount").val();
+
+                due =  parseFloat(balance) - parseFloat(receive_amount);
+
+                if(due.lenght === 0 || isNaN(due)){
+                    $("#due").val(0);
+                }
+
+                $("#due").val(parseFloat(due).toFixed(2));
+            }
+
+
+            
 
 
 

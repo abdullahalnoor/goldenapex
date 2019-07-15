@@ -78,7 +78,7 @@ class customerController extends Controller
     }
 
 
-    public function fetchCustomerDetail($id){
+    public function fetchCustomerpaymentDetail($id){
         $customer_detail = customer_info::find($id);
         $customerPayment = CustomerPayment::where('customer_id',$id)->get();
         $paidAmount = $customerPayment->where('type',1)->sum('payment_total');
@@ -93,14 +93,77 @@ class customerController extends Controller
     }
 
     public function saveCustomerPayment(Request $request){
+
+        // return $request->all();
         $customerPayment = new CustomerPayment();
+
         
-        $customerPayment->payment_total = $invoice->total_amount;
+        $customerPayment->payment_total = $request->receive_amount;
         $customerPayment->customer_id =  $request->customer_id; 
-        $customerPayment->invoice_id =   $invoice->id;
         $customerPayment->date =   $request->date;
         $customerPayment->type =   1; // 1 mean credit payment
         $customerPayment->save();
     }
+
+
+    public function customerLedger(){
+        $customer_info = customer_info::all();
+        $view = '';
+        return view('admin.customer.customer-ledger', get_defined_vars());
+    }
+
+    public function customerLedgerDetail(Request $request){
+        // return $request->all();
+        $customer_info = customer_info::all();
+        $customerPayment = CustomerPayment::where('customer_id',$request->customer_id)->orderBy('id','asc')->get();
+        $totalPaidAmount = $customerPayment->whereIn('type',[1,2])->sum('payment_total');
+        // return $totalPaidAmount;
+        $totalInvoiceAmount = invoice::where('customer_id',$request->customer_id)->get()->sum('total_amount');
+        // return $invoice;
+        // $invoice = invoice::where('customer_id',$customerPayment->customer_id)->first();
+        // DB::table('users')
+        // ->join('contacts', function ($join) {
+        //     $join->on('users.id', '=', 'contacts.user_id')
+        //          ->where('contacts.user_id', '>', 5);
+        // })
+        // ->get();
+
+        $customerLedger = \DB::table('customer_payments')
+        ->join('invoices', function ($join) {
+            $join->on('customer_payments.customer_id', '=', 'invoices.customer_id');
+        })
+        ->get();
+
+        $data = [
+
+        ];
+       $view =  view('admin.customer.customer-ledger-component', get_defined_vars());
+       
+        return view('admin.customer.customer-ledger',[
+            'view'=>$view,
+            'customer_info'=>$customer_info,
+        ]);
+       
+    }
+
+
+    public function viewPaidCustomer(){
+        $customer_info = customer_info::paginate(10);
+        $customerPayment = CustomerPayment::get();
+        // $customerPayment = CustomerPayment::where('customer_id',$request->customer_id)->orderBy('id','asc')->get();
+        // $totalPaidAmount = $customerPayment->whereIn('type',[1,2])->sum('payment_total');
+        // // return $totalPaidAmount;
+        // $totalInvoiceAmount = invoice::where('customer_id',$request->customer_id)->get()->sum('total_amount');
+        return view('admin.customer.paid-customer',get_defined_vars());
+    }
+
+
+    public function viewDueCustomer(){
+        $customer_info = customer_info::paginate(10);
+        $customerPayment = CustomerPayment::get();
+     return view('admin.customer.due-customer',get_defined_vars());
+    }
+
+
 
 }

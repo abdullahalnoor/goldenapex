@@ -23,6 +23,7 @@ use App\SellReturn;
 use App\SellReturnDetail;
 use App\ProductGrade;
 use App\ProductCft;
+use App\CustomerPayment;
 // use Request;
 
 
@@ -276,6 +277,16 @@ class ProductReturnController extends Controller
           $invoice->total_discount -= $request->discount_total ;
           $invoice->total_discount_two -= $request->multi_dis_total;
           $invoice->save();
+
+          $customerPayment = new CustomerPayment();
+        
+          $customerPayment->payment_total =  $sellReturn->grand_total ;
+          $customerPayment->customer_id =  $invoice->customer_id; 
+          $customerPayment->invoice_id =   $invoice->id;
+          $customerPayment->date =   date('Y-m-d');
+          $customerPayment->type =   2; // 2 mean customer credit  by return
+          $customerPayment->save();
+  
 
           $invoice_details;
           if(isset($request->inventory_id)){

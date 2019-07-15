@@ -16,6 +16,7 @@ use App\ProductCft;
 use Illuminate\Support\Facades\Input;
 use PDF;
 use App\CustomerPayment;
+use Config;
 
 class invoiceController extends Controller
 {
@@ -79,6 +80,10 @@ private function numberTowords(float $number)
         $invoice = invoice::orderBy('id','desc')->paginate(10);
         $customer_info = customer_info::all();
         $totalAmount = invoice::sum('total_amount');
+
+
+
+
     	return view('admin.invoice.manageInvoice',get_defined_vars());
     }
 
