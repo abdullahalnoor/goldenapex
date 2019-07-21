@@ -51,7 +51,7 @@
                         <th>address</th>
                         <th>mobile</th>
                    
-                        <th>Balance</th>
+                        <th>Amount</th>
                         <th>Action</th>
                     </tr>
                 </thead>

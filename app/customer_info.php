@@ -35,7 +35,7 @@ class customer_info extends Model
         $totalDueAmount = $customerPayment->whereIn('type',0)->sum('payment_total');
         $customerCreditAmount =  $totalPaidAmount - $totalDueAmount;
         if( $customerCreditAmount < 0 ){
-            return $customerCreditAmount;
+            return -($customerCreditAmount);
         }
         
     }

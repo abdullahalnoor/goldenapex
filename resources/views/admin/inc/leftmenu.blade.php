@@ -77,9 +77,9 @@
         <li><a href="{{ url('/customer/add')}}"><i class="fa fa-circle-o"></i> Add Customer</a></li>
         <li><a href="{{ url('/customer/manage')}}"><i class="fa fa-circle-o"></i> Manage Customer</a></li>
         <li><a href="{{ url('/customer/add-payment')}}"><i class="fa fa-circle-o"></i> Add Payment </a></li>
-        {{-- <li><a href="{{ url('/customer/ledger')}}"><i class="fa fa-circle-o"></i> Customer Ledger </a></li>
+        <li><a href="{{ url('/customer/ledger')}}"><i class="fa fa-circle-o"></i> Customer Ledger </a></li>
         <li><a href="{{ url('/view-due/customer')}}"><i class="fa fa-circle-o"></i> Credit Customer</a></li>
-        <li><a href="{{ url('/view-paid/customer')}}"><i class="fa fa-circle-o"></i> Paid Customer</a></li> --}}
+        <li><a href="{{ url('/view-paid/customer')}}"><i class="fa fa-circle-o"></i> Paid Customer</a></li>
         </ul>
       </li>
 
