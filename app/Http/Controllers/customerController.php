@@ -118,7 +118,9 @@ class customerController extends Controller
         $customerPayment = CustomerPayment::where('customer_id',$request->customer_id)->orderBy('id','asc')->get();
         $totalPaidAmount = $customerPayment->whereIn('type',[1,2])->sum('payment_total');
         // return $totalPaidAmount;
-        $totalInvoiceAmount = invoice::where('customer_id',$request->customer_id)->get()->sum('total_amount');
+        $totalInvoiceAmount = $customerPayment->whereIn('type',0)->sum('payment_total');
+
+        // $totalInvoiceAmount = invoice::where('customer_id',$request->customer_id)->get()->sum('total_amount');
         // return $invoice;
         // $invoice = invoice::where('customer_id',$customerPayment->customer_id)->first();
         // DB::table('users')
