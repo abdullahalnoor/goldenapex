@@ -109,6 +109,7 @@ class customerController extends Controller
     public function customerLedger(){
         $customer_info = customer_info::all();
         $view = '';
+        $customerPayment = '';
         return view('admin.customer.customer-ledger', get_defined_vars());
     }
 
@@ -139,12 +140,9 @@ class customerController extends Controller
         $data = [
 
         ];
-       $view =  view('admin.customer.customer-ledger-component', get_defined_vars());
+     
        
-        return view('admin.customer.customer-ledger',[
-            'view'=>$view,
-            'customer_info'=>$customer_info,
-        ]);
+        return view('admin.customer.customer-ledger', get_defined_vars());
        
     }
 

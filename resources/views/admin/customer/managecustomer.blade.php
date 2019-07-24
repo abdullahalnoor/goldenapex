@@ -82,32 +82,4 @@
 
 @endsection
 
-<!-- Delete Category ajax code -->
-<script type="text/javascript">
-    //Delete Category 
-    $(".DeleteCategory").click(function ()
-    {
-        var category_id = $(this).attr('name');
-        var csrf_test_name = $("[name=csrf_test_name]").val();
-        var x = confirm("Are You Sure,Want to Delete ?");
-        if (x == true) {
-            $.ajax
-                    ({
-                        type: "POST",
-                        url: 'http://localhost/sales/public/unit/manage',
-                        data: {category_id: category_id, csrf_test_name: csrf_test_name},
-                        cache: false,
-                        success: function (datas)
-                        {
-                            alert(datas);
-                        }
-                    });
-        }
-    });
-</script>
-<!-- tootip text code -->
-<script>
-$(document).ready(function(){
-  $('[data-toggle="tooltip"]').tooltip();   
-});
-</script>
+
