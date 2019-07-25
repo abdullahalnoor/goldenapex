@@ -57,15 +57,24 @@ Generate Customer Ledger
           </div>
 
 
-@if(!empty($customerPayment))
-     <div class="row">
-        <div class="col-sm-12">
-            <div class="card">
-              <div class="card-header"><i class="fa fa-table"></i> All customers </div>
-              <div class="card-body">
-                <div class="table-responsive">
-                <table id="default-datatable" class="table table-bordered table-striped table-hover">
-                  <thead>
+         
+<div class="row mt-2" >
+        @if(!empty($current_customer_info))
+    <div class="col-sm-12 text-center">
+            <button  class="btn btn-primary " onclick="printDiv('printableArea')"><span class="fa fa-print"></span> Print Ledger</button>
+
+    </div>
+    @endif
+    <div class="col-sm-12">
+
+      <div class="card">
+        <div class="card-header"><i class="fa fa-table"></i> All customers </div>
+        
+        <div class="card-body" id="printableArea">
+          <div class="table-responsive">
+                @if(!empty($current_customer_info))  <h5 class="ml-5 mb-2">{{$current_customer_info->customer_name.'\'s Ledger Information'}}</h5> @endif
+          <table  class="table table-bordered table-striped table-hover">
+            <thead>
                         <tr class="text-center">
                             <th>Date</th>
                             <th>Activity</th>
@@ -75,7 +84,9 @@ Generate Customer Ledger
                            
                         </tr>
                     </thead>
+                   
                     <tbody id="tableBody ">
+                     @if(!empty($customerPayment))
                         @php($balance = 0)
                       
                       
@@ -84,15 +95,15 @@ Generate Customer Ledger
                                 <td>{{$customerPaid->date}}</td>
                                 <td>
                                     @if ($customerPaid->type == 0)
-                                        invoice
+                                        Invoice
                                         @php($data = $customerPaid->invoiceInfo($customerPaid->invoice_id))
-                                        {{'['.$data['product_name'].']'}} -
-                                        {{'['.$data['sell_invoice_no'].']'}}
+                                        {{'('.$data['product_name'].')'}} -
+                                        {{'('.$data['sell_invoice_no'].')'}}
                                         
                                     @elseif($customerPaid->type == 1)
-                                        paid
+                                        Paid
                                     @elseif($customerPaid->type == 2)
-                                        return
+                                        Return
                                         {{'('.$data['product_name'].')'}} -
                                         {{'('.$data['sell_invoice_no'].')'}}
                                     @endif
@@ -127,25 +138,46 @@ Generate Customer Ledger
                                 <td >
                                         {{$totalInvoiceAmount}}
                                     </td>
-                                <td>
+                                <td >
                                     {{$totalPaidAmount}}
                                 </td>
+                                <td></td>
                             </tr>
     
                     </tbody>
+                    @endif
                 </table>
-               
+                
                 </div>
                 </div>
               </div>
             </div>
           </div><!-- End Row-->
 
-          @endif
+         
 
 @endsection
 
 
 
+@push('script')
 
+    
+   
+
+
+ <!-- Printable area start -->
+<script type="text/javascript">
+    function printDiv(divName) {
+        var printContents = document.getElementById(divName).innerHTML;
+        var originalContents = document.body.innerHTML;
+        document.body.innerHTML = printContents;
+        document.body.style.marginTop="-45px";
+        window.print();
+        document.body.innerHTML = originalContents;
+    }
+</script>
+    
+
+@endpush
 

@@ -110,12 +110,14 @@ class customerController extends Controller
         $customer_info = customer_info::all();
         $view = '';
         $customerPayment = '';
+        $current_customer_info = '';
         return view('admin.customer.customer-ledger', get_defined_vars());
     }
 
     public function customerLedgerDetail(Request $request){
         // return $request->all();
         $customer_info = customer_info::all();
+        $current_customer_info = customer_info::find($request->customer_id);
         $customerPayment = CustomerPayment::where('customer_id',$request->customer_id)->orderBy('id','asc')->get();
         $totalPaidAmount = $customerPayment->whereIn('type',[1,2])->sum('payment_total');
         // return $totalPaidAmount;

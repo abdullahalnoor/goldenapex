@@ -68,7 +68,7 @@
 
 
   <!-- Bootstrap core JavaScript-->
-  <script src="{{ asset('admin/') }}/assets/js/jquery.min.js"></script>
+  <script src="{{ asset('admin/assets/js/jquery.min.js') }}"></script>
   <script src="{{ asset('admin') }}/assets/js/popper.min.js"></script>
   <script src="{{ asset('admin') }}/assets/js/bootstrap.min.js"></script>
     
@@ -101,12 +101,10 @@
     <script src="{{ asset('admin') }}/assets/plugins/jquery-validation/js/jquery.validate.min.js"></script>
    
     <script>
-      $(document).ready(function() {
-        $('.select2').select2();
-    });
-     $(document).ready(function() {
-
-
+        $(document).ready(function() {
+          $('.select2').select2();
+      });
+    $(document).ready(function() {
       //Default data table
        $('#default-datatable').DataTable();
 
