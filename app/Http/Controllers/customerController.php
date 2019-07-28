@@ -74,7 +74,7 @@ class customerController extends Controller
 
        
 
-        return view('admin.Customer.customer-payment', get_defined_vars());
+        return view('admin.customer.customer-payment', get_defined_vars());
     }
 
 
@@ -95,6 +95,8 @@ class customerController extends Controller
     public function saveCustomerPayment(Request $request){
 
         // return $request->all();
+
+    
         $customerPayment = new CustomerPayment();
 
         
@@ -103,6 +105,7 @@ class customerController extends Controller
         $customerPayment->date =   $request->date;
         $customerPayment->type =   1; // 1 mean credit payment
         $customerPayment->save();
+        return back();
     }
 
 

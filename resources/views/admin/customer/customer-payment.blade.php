@@ -1,7 +1,7 @@
 @extends('admin.master')
 
 @section('title')
-	Add Customer Information
+	 Customer Payment
 @endsection
 
 @section('mainContent')
@@ -19,7 +19,7 @@
         <br>
 	<div class="card">
 			     <div class="card-body">
-				   <div class="card-title"> Customer Information</div>
+				   <div class="card-title">  Customer Payment</div>
 				   <hr>				   
                     {!! Form::open(['route' => 'customer.add-payment','method'=>'POST']) !!}
                     @csrf

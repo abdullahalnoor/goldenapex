@@ -118,7 +118,8 @@ private function numberTowords(float $number)
     public function fetchProductPrice($id){
         $productCft =  ProductCft::find($id);
         $productGrade = ProductGrade::find($productCft->grade_id);
-        $totalCft =round((($productCft->length * $productCft->width * $productCft->height) / 1728),2);
+  
+        $totalCft =(($productCft->length * $productCft->width * $productCft->height) / 1728);
         $totalRate = $totalCft * $productGrade->price;
         $sizeRate = round($totalRate,2);
                                  
@@ -203,7 +204,7 @@ private function numberTowords(float $number)
         $invoice->total_discount_two = $discount_two ;
         $grand_total = $grand_total - $discount_two ;
         
-        $invoice->total_amount = $grand_total + $request->others_price ;
+        $invoice->total_amount = round($grand_total + $request->others_price) ;
         $invoice->save();
 
         $customerPayment = new CustomerPayment();
@@ -235,7 +236,7 @@ private function numberTowords(float $number)
                 $productGrade = ProductGrade::find($productCft->grade_id);
 
 
-                $totalCft =round((($productCft->length * $productCft->width * $productCft->height) / 1728),2);
+                $totalCft =(($productCft->length * $productCft->width * $productCft->height) / 1728);
                 $invoice_details->grade_price = $productGrade->price;
                 $invoice_details->cft =  $totalCft;
 
@@ -257,7 +258,7 @@ private function numberTowords(float $number)
 
                 $invoice_details->discount = $discount_one  ;
                 $invoice_details->discount_two =  $discount_two;
-                $invoice_details->total_price = $total_price;
+                $invoice_details->total_price = round($total_price);
 
                 $invoice_details->save();
         
@@ -394,7 +395,7 @@ private function numberTowords(float $number)
         $invoice->total_discount_two = $discount_two ;
         $grand_total = $grand_total - $discount_two ;
         
-        $invoice->total_amount = $grand_total + $request->others_price;
+        $invoice->total_amount = round($grand_total + $request->others_price);
         $invoice->save();
 
 
@@ -423,7 +424,7 @@ private function numberTowords(float $number)
                 $productGrade = ProductGrade::find($productCft->grade_id);
 
 
-                $totalCft =round((($productCft->length * $productCft->width * $productCft->height) / 1728),2);
+                $totalCft =(($productCft->length * $productCft->width * $productCft->height) / 1728);
                 $invoice_details->grade_price = $productGrade->price;
                 $invoice_details->cft =  $totalCft;
 
@@ -443,7 +444,7 @@ private function numberTowords(float $number)
                 $invoice_details[$i]->discount = $discount_one  ;
                 $invoice_details[$i]->discount_two =  $discount_two ;
 
-                $invoice_details[$i]->total_price = $total_price;
+                $invoice_details[$i]->total_price = round($total_price);
 
                 $invoice_details[$i]->save();
                 

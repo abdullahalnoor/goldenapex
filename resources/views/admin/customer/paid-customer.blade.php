@@ -3,7 +3,7 @@
 @section('mainContent')
 
 @section('title')
-	Manage customer
+	Paid Customer
 @endsection
 
 <br>
@@ -40,7 +40,7 @@
       <div class="row">
         <div class="col-sm-12">
           <div class="card">
-            <div class="card-header"><i class="fa fa-table"></i> All customers </div>
+            <div class="card-header"><i class="fa fa-table"></i> Paid customers </div>
             <div class="card-body">
               <div class="table-responsive">
               <table id="default-datatable" class="table table-bordered table-striped table-hover">

@@ -3,7 +3,7 @@
 @section('mainContent')
 
 @section('title')
-Generate Customer Ledger
+ Customer Ledger
 @endsection
 
 <br>
@@ -26,7 +26,7 @@ Generate Customer Ledger
      
         <div class="card">
             <div class="card-body">
-              <div class="card-title">Generate Customer Ledger</div>
+              <div class="card-title"> Customer Ledger</div>
               <hr>				   
                <form id="generateLedeger" action="{{route('customer.ledger-detail')}}" method="POST"> 
                    @csrf
@@ -68,7 +68,7 @@ Generate Customer Ledger
     <div class="col-sm-12">
 
       <div class="card">
-        <div class="card-header"><i class="fa fa-table"></i> All customers </div>
+        <div class="card-header"><i class="fa fa-table"></i>  Customer Ledger </div>
         
         <div class="card-body" id="printableArea">
           <div class="table-responsive">

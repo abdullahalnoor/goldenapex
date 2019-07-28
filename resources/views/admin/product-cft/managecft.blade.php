@@ -62,7 +62,7 @@
                              @endforeach
                               
                               </td>
-                              @php($totalCft = round((($cft->length * $cft->width * $cft->height) / 1728),2))
+                              @php($totalCft = round((($cft->length * $cft->width * $cft->height) / 1728),4))
                              <td>{{$cft->length.'x'.$cft->width.'x'.$cft->height}}</td>
                              <td>{{$totalCft}}</td>
                              <td>

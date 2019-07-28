@@ -683,7 +683,7 @@ $(document).on("keyup keypress keydown change", ".quantity", function() {
 
         if (!isNaN(price) && price.length != 0) {
            total = parseFloat(price * quantity);
-           $(this).parent().next().next().children().val(total);
+           $(this).parent().next().next().children().val(total.toFixed(2));
            
          }else{
           $(this).parent().next().next().children().val(0);

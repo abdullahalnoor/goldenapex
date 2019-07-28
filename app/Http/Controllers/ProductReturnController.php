@@ -270,10 +270,10 @@ class ProductReturnController extends Controller
           $sellReturn->sell_id = $invoice->id;
           $sellReturn->customer_id = $invoice->customer_id;
           $sellReturn->return_date = date("Y/m/d");
-          $sellReturn->grand_total = $request->sell_grand_total_price;
+          $sellReturn->grand_total = round($request->sell_grand_total_price);
           $sellReturn->save();
 
-          $invoice->total_amount -= $request->sell_grand_total_price;
+          $invoice->total_amount -= round($request->sell_grand_total_price);
           $invoice->total_discount -= $request->discount_total ;
           $invoice->total_discount_two -= $request->multi_dis_total;
           $invoice->save();
@@ -345,7 +345,7 @@ class ProductReturnController extends Controller
 
                 $total_price = $total_price - $discount_two;
 
-                $sellReturnDetail->total = $total_price;
+                $sellReturnDetail->total = round($total_price);
                 $sellReturnDetail->save();
 
 
@@ -366,7 +366,7 @@ class ProductReturnController extends Controller
                     $invoice_details[$i]->quantity -= $request->return_sell_quantity[$i];
                     $invoice_details[$i]->discount -= $discount_one;
                     $invoice_details[$i]->discount_two -= $discount_two;
-                    $invoice_details[$i]->total_price -= $total_price;
+                    $invoice_details[$i]->total_price -= round($total_price);
                     $invoice_details[$i]->save();
                
 
