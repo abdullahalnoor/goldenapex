@@ -28,7 +28,9 @@
 		<div class="card-body">
 		 <div class="card-content p-2">
 		 	<div class="text-center">
-		 		<img src="{{ asset('admin') }}/assets/images/logo-icon.png">
+				
+					<img src="{{ asset('admin') }}/assets/images/logo.png" class="logo-icon" alt="logo icon">
+				  
 		 	</div>
 		  <div class="card-title text-uppercase text-center py-3">Login</div>
 		    <form method="POST" action="{{ route('login') }}" aria-label="{{ __('Login') }}">
@@ -74,7 +76,7 @@
 			  </div>
 			 </div>
 			 <div class="form-group col-6 text-right">
-			  <a href="#">Reset Password</a>
+			  {{-- <a href="#">Reset Password</a> --}}
 			 </div>
 			</div>
 				<button type="submit" class="btn btn-primary shadow-primary btn-round btn-block waves-effect waves-light">
@@ -82,7 +84,7 @@
                 </button>
 			  <div class="text-center pt-3">
 				<hr>
-				<p class="text-muted">Do not have an account? <a href="{{ url('/register')}}"> Sign Up here</a></p>
+				{{-- <p class="text-muted">Do not have an account? <a href="{{ url('/register')}}"> Sign Up here</a></p> --}}
 			  </div>
 			 </form>
 		   </div>

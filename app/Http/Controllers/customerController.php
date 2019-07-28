@@ -81,10 +81,11 @@ class customerController extends Controller
     public function fetchCustomerpaymentDetail($id){
         $customer_detail = customer_info::find($id);
         $customerPayment = CustomerPayment::where('customer_id',$id)->get();
-        $paidAmount = $customerPayment->where('type',1)->sum('payment_total');
-        $balance = $customerPayment->where('type',0)->sum('payment_total');
+        $paidAmount = $customerPayment->whereIn('type',[1,2])->sum('payment_total');
+        $invoice = $customerPayment->where('type',0)->sum('payment_total');
+        $balance =  $invoice - $paidAmount ;
         // return $balance;
-        $data = [
+        $data = [ 
             'customer'=> $customer_detail,
             'paidAmount'=> $paidAmount,
             'balance'=> $balance,
