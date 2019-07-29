@@ -81,10 +81,10 @@
                              @endforeach 
                               </td>
                             
-                             {{-- <td> --}}
-                                 {{-- <a class="btn btn-info btn-sm" href="{{ url('/product/cft/edit/'.$cft->id) }}"><i style="font-size: 16px;" class="fa fa-edit" data-toggle="tooltip" title="Update"></i></a>   --}}
-                                 {{-- <a class="btn btn-danger btn-sm "    href="{{ url('/product/cft/delete/'.$cft ->id) }}" ><i style="font-size: 16px;" class="fa fa-trash" data-toggle="tooltip" title="Delete"></i></a> --}}
-                            {{-- </td> --}}
+                             <td> 
+                                 <a class="btn btn-info btn-sm" href="{{ url('/product/cft/edit/'.$cft->id) }}"><i style="font-size: 16px;" class="fa fa-edit" data-toggle="tooltip" title="Update"></i></a>   
+                                  <a class="btn btn-danger btn-sm "    href="{{ url('/product/cft/delete/'.$cft ->id) }}" ><i style="font-size: 16px;" class="fa fa-trash" data-toggle="tooltip" title="Delete"></i></a>
+                             </td>
            
                     </tr>
                     @empty

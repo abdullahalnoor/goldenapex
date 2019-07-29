@@ -25,6 +25,8 @@
   <link href="{{ asset('admin') }}/assets/css/sidebar-menu.css" rel="stylesheet"/>
   <link href="{{ asset('admin') }}/assets/css/select2.min.css" rel="stylesheet"/>
 
+  <link href="{{ asset('admin') }}/assets/plugins/bootstrap-datepicker/css/bootstrap-datepicker.min.css" rel="stylesheet" type="text/css">
+
   <!-- Custom Style-->
   <link href="{{ asset('admin') }}/assets/css/app-style.css" rel="stylesheet"/>
   <link href="{{ asset('admin') }}/assets/css/select2.min.css" rel="stylesheet"/>
@@ -96,7 +98,7 @@
   <script src="{{ asset('admin') }}/assets/plugins/bootstrap-datatable/js/buttons.colVis.min.js"></script>
   <script src="{{ asset('admin') }}/assets/plugins/jquery-validation/js/jquery.validate.min.js"></script>
   <script src="{{ asset('admin') }}/assets/js/select2.min.js"></script>
-
+<script src="{{ asset('admin') }}/assets/plugins/bootstrap-datepicker/js/bootstrap-datepicker.min.js"></script>    
     <!--Form Validatin Script-->
     <script src="{{ asset('admin') }}/assets/plugins/jquery-validation/js/jquery.validate.min.js"></script>
    
@@ -119,6 +121,12 @@
         .appendTo( '#example_wrapper .col-md-6:eq(0)' );
         buttons: [ 'copy', 'excel', 'pdf', 'print', 'colvis' ]
       } );
+
+      
+      $('.datePicker').datepicker({
+        format: 'd-mm-yyyy',
+        todayHighlight: true
+      });
 
     </script>
 

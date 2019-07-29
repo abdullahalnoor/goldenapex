@@ -132,9 +132,17 @@ Route::get('/customer/payment-detail/{id}', 'customerController@fetchCustomerpay
 Route::get('/customer/ledger', 'customerController@customerLedger')->name('customer.ledger');
 Route::post('/customer/ledger-detail', 'customerController@customerLedgerDetail')->name('customer.ledger-detail');
 
+Route::get('/customer/manage-payment', 'customerController@manageCustomerPayment')->name('customer.manage-payment');
+
 
 Route::get('/view-paid/customer', 'customerController@viewPaidCustomer')->name('customer.view-paid');
 Route::get('/view-due/customer', 'customerController@viewDueCustomer')->name('customer.due-paid');
+
+
+
+
+Route::get('/sale-report/product-wise', 'customerController@saleReportProductWise')->name('sale-report.product-wise');
+Route::post('/sale-report/product-wise', 'customerController@viewSaleReportProductWise');
 
 /*end customer*/
 

@@ -54,10 +54,10 @@
                              <td>{{$grade->name}}</td>
                              <td>{{$grade->price}}</td>
                             
-                             {{-- <td> --}}
-                                 {{-- <a class="btn btn-info btn-sm" href="{{ url('/product/grade/edit/'.$grade->id) }}"><i style="font-size: 16px;" class="fa fa-edit" data-toggle="tooltip" title="Update"></i></a>   --}}
-                                 {{-- <a class="btn btn-danger btn-sm "    href="{{ url('/product/grade/delete/'.$grade ->id) }}" ><i style="font-size: 16px;" class="fa fa-trash" data-toggle="tooltip" title="Delete"></i></a> --}}
-                            {{-- </td> --}}
+                             <td>
+                                 <a class="btn btn-info btn-sm" href="{{ url('/product/grade/edit/'.$grade->id) }}"><i style="font-size: 16px;" class="fa fa-edit" data-toggle="tooltip" title="Update"></i></a>  
+                                 <a class="btn btn-danger btn-sm "    href="{{ url('/product/grade/delete/'.$grade ->id) }}" ><i style="font-size: 16px;" class="fa fa-trash" data-toggle="tooltip" title="Delete"></i></a>
+                            </td>
            
                     </tr>
                     @empty

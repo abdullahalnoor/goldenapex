@@ -77,6 +77,7 @@
         <li><a href="{{ url('/customer/add')}}"><i class="fa fa-circle-o"></i> Add Customer</a></li>
         <li><a href="{{ url('/customer/manage')}}"><i class="fa fa-circle-o"></i> Manage Customer</a></li>
         <li><a href="{{ url('/customer/add-payment')}}"><i class="fa fa-circle-o"></i> Add Payment </a></li>
+        <li><a href="{{ url('/customer/manage-payment')}}"><i class="fa fa-circle-o"></i> Manage Payment </a></li>
         <li><a href="{{ url('/customer/ledger')}}"><i class="fa fa-circle-o"></i> Customer Ledger </a></li>
         <li><a href="{{ url('/view-due/customer')}}"><i class="fa fa-circle-o"></i> Credit Customer</a></li>
         <li><a href="{{ url('/view-paid/customer')}}"><i class="fa fa-circle-o"></i> Paid Customer</a></li>
@@ -195,22 +196,22 @@
   <li><a href="{{ url('/product/stock/report') }}"><i class="fa fa-circle-o"></i> Stock Report (Product Wise)</a></li>
   </ul>
 </li>
-
+-->
 <li>
   <a href="javaScript:void();" class="waves-effect">
     <i class="ti-briefcase"></i>
     <span>Report</span> <i class="fa fa-angle-left pull-right"></i>
   </a>
   <ul class="sidebar-submenu">
-  <li><a href="#"><i class="fa fa-circle-o"></i> Todays Report</a></li>
+  {{-- <li><a href="#"><i class="fa fa-circle-o"></i> Todays Report</a></li> --}}
   <li><a href="#"><i class="fa fa-circle-o"></i> Todays Customer Receipt</a></li>
   <li><a href="#"><i class="fa fa-circle-o"></i> Sales Report</a></li>
-  <li><a href="#"><i class="fa fa-circle-o"></i> Purchase Report</a></li>
-  <li><a href="#"><i class="fa fa-circle-o"></i> Purchase Report (Category Wise)</a></li>
-  <li><a href="#"><i class="fa fa-circle-o"></i> Sales Report (Product Wise)</a></li>
-  <li><a href="#"><i class="fa fa-circle-o"></i> Sales Report (Category Wise)</a></li>
+  {{-- <li><a href="#"><i class="fa fa-circle-o"></i> Purchase Report</a></li> --}}
+  {{-- <li><a href="#"><i class="fa fa-circle-o"></i> Purchase Report (Category Wise)</a></li> --}}
+  <li><a href="{{url('/sale-report/product-wise')}}"><i class="fa fa-circle-o"></i> Sales Report (Product Wise)</a></li>
+  {{-- <li><a href="#"><i class="fa fa-circle-o"></i> Sales Report (Category Wise)</a></li> --}}
   </ul>
-</li> -->
+</li> 
 
       {{-- <li>
         <a href="javaScript:void();" class="waves-effect">

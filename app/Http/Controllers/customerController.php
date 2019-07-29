@@ -6,6 +6,8 @@ use App\customer_info;
 use Illuminate\Http\Request;
 use App\CustomerPayment;
 use App\invoice;
+use App\invoice_details;
+use App\product;
 
 class customerController extends Controller
 {
@@ -35,7 +37,7 @@ class customerController extends Controller
 
         // return $customer_info;
 
-        return view('admin.Customer.editcustomer', get_defined_vars());
+        return view('admin.customer.editcustomer', get_defined_vars());
     }
 
     public function update(Request $request){
@@ -169,6 +171,46 @@ class customerController extends Controller
         $customerPayment = CustomerPayment::get();
      return view('admin.customer.due-customer',get_defined_vars());
     }
+
+
+    public function manageCustomerPayment(){
+        $customer_info = customer_info::all();
+        $customerPayment = CustomerPayment::whereIn('type',[1,2])->orderBy('id','desc')->paginate(10);
+     return view('admin.customer.manage-payment',get_defined_vars());
+
+    }
+
+
+    public function saleReportProductWise(){
+        // invoice
+        // invoice_details
+     return view('admin.report.product-wise-sales',get_defined_vars());
+    }
+
+    public function viewSaleReportProductWise(Request $request){
+        // return $request->all();
+
+    isset($request->start_date) ? $start_date = date('Y-m-d',strtotime($request->start_date)) :  $start_date = date('Y-m-d');
+    isset($request->end_date) ? $end_date = date('Y-m-d',strtotime($request->end_date)) :  $end_date = date('Y-m-d');
+
+        $invoicesId = invoice::whereBetween('date',[$start_date,$end_date])->pluck('id');
+      
+        $collection = [];
+        $product = product::all();
+
+        foreach($product as $key => $value){
+            $collection[$value->id]['id'] = $value->id;
+            $collection[$value->id]['quantity'] = invoice_details::whereIn('invoice_id',$invoicesId)->where('product_id',$value->id)->sum('quantity');
+            $collection[$value->id]['total_price'] = invoice_details::whereIn('invoice_id',$invoicesId)->where('product_id',$value->id)->sum('total_price');
+        }
+        return $collection;
+
+        
+        // return $invoice_details->toArray();
+
+    }
+
+
 
 
 
