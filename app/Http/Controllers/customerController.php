@@ -199,9 +199,9 @@ class customerController extends Controller
         $product = product::all();
 
         foreach($product as $key => $value){
-            $collection[$value->id]['id'] = $value->id;
-            $collection[$value->id]['quantity'] = invoice_details::whereIn('invoice_id',$invoicesId)->where('product_id',$value->id)->sum('quantity');
-            $collection[$value->id]['total_price'] = invoice_details::whereIn('invoice_id',$invoicesId)->where('product_id',$value->id)->sum('total_price');
+            $collection[$key]['id'] = $value->id;
+            $collection[$key]['quantity'] = invoice_details::whereIn('invoice_id',$invoicesId)->where('product_id',$value->id)->sum('quantity');
+            $collection[$key]['total_price'] = invoice_details::whereIn('invoice_id',$invoicesId)->where('product_id',$value->id)->sum('total_price');
         }
         return $collection;
 
