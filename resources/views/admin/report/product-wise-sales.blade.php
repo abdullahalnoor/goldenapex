@@ -82,36 +82,35 @@ Manage Payment
               <table id="default-datatable" class="table table-bordered table-striped table-hover">
                 <thead>
                     <tr class="text-center">
-                    	<th> ID</th>
-                        <th>Customer name</th>
-                        <th>Type</th>
-                        <th>Amount</th>
+                    
+                        <th> name</th>
+                        <th>Quantity</th>
+                        <th>Price</th>
                     </tr>
                 </thead>
                 <tbody>
-                	<?php $i=0; ?>
-
-                    {{-- @foreach($customerPayment as $payment)
+                	
+                    @if (!empty($collection))
+                        
                     
-                    <tr class="text-center">
-                        <td>{{ ++$i }}</td>
-                        <td>
-                           @foreach ($customer_info as $customer)
-                               @if ($customer->id == $payment->customer_id)
-                               {{ $customer->customer_name }}
-                               @endif
-                           @endforeach
+                        @for ($i = 0; $i < count($collection); $i++)
+                           
+                        
+                            <tr class="text-center">
+                                <td>{{ $collection[$i]['name'] }}</td>
+                                <td>{{ $collection[$i]['quantity'] }}</td>
+                                <td>{{ $collection[$i]['total_price'] }}</td>
                             
-                        </td>
-                        <td>{{ $payment->type == 1 ? 'Paid' : 'Return' }}</td>
-                        <td>{{ $payment->payment_total }}</td>
-                    </tr>
-                    
-                    @endforeach --}}
+                            </tr>
+                            
+                           
+                        @endfor
 
+                   
+                    @endif
                 </tbody>
             </table>
-            {{-- {{$customerPayment->links()}} --}}
+          
             </div>
             </div>
           </div>

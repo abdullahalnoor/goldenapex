@@ -8,6 +8,8 @@ use App\CustomerPayment;
 use App\invoice;
 use App\invoice_details;
 use App\product;
+use DB;
+use Illuminate\Support\Arr;
 
 class customerController extends Controller
 {
@@ -156,7 +158,7 @@ class customerController extends Controller
 
 
     public function viewPaidCustomer(){
-        $customer_info = customer_info::paginate(10);
+        $customer_info = customer_info::get();
         $customerPayment = CustomerPayment::get();
         // $customerPayment = CustomerPayment::where('customer_id',$request->customer_id)->orderBy('id','asc')->get();
         // $totalPaidAmount = $customerPayment->whereIn('type',[1,2])->sum('payment_total');
@@ -167,7 +169,7 @@ class customerController extends Controller
 
 
     public function viewDueCustomer(){
-        $customer_info = customer_info::paginate(10);
+        $customer_info = customer_info::get();
         $customerPayment = CustomerPayment::get();
      return view('admin.customer.due-customer',get_defined_vars());
     }
@@ -184,11 +186,11 @@ class customerController extends Controller
     public function saleReportProductWise(){
         // invoice
         // invoice_details
+        $collection = '';
      return view('admin.report.product-wise-sales',get_defined_vars());
     }
 
     public function viewSaleReportProductWise(Request $request){
-        // return $request->all();
 
     isset($request->start_date) ? $start_date = date('Y-m-d',strtotime($request->start_date)) :  $start_date = date('Y-m-d');
     isset($request->end_date) ? $end_date = date('Y-m-d',strtotime($request->end_date)) :  $end_date = date('Y-m-d');
@@ -199,17 +201,74 @@ class customerController extends Controller
         $product = product::all();
 
         foreach($product as $key => $value){
-            // $collection[$key]['id'] = $value->id;
-            // $collection[$key]['name'] = product::where('id',$value->id)->pluck('product_name');
-            // $collection[$key]['name'] = product::where('id',$value->id)->first()->product_name;
             $collection[$key]['name'] = product::find($value->id)->product_name;
             $collection[$key]['quantity'] = invoice_details::whereIn('invoice_id',$invoicesId)->where('product_id',$value->id)->sum('quantity');
             $collection[$key]['total_price'] = invoice_details::whereIn('invoice_id',$invoicesId)->where('product_id',$value->id)->sum('total_price');
         }
-        return $collection;
+
+        foreach($product as $key => $value){
+            $collection[$key] = [
+                'name' => product::find($value->id)->product_name,
+                'quantity' => invoice_details::whereIn('invoice_id',$invoicesId)->where('product_id',$value->id)->sum('quantity'),
+                'total_price' => invoice_details::whereIn('invoice_id',$invoicesId)->where('product_id',$value->id)->sum('total_price'),
+    
+            ];
+          }
 
         
-        // return $invoice_details->toArray();
+        // return $collection;
+
+      
+
+        $invoicesId = \DB::table('invoices')
+        ->whereBetween('date',[$start_date,$end_date])
+        // ->select('id')
+        ->get()
+        ->pluck('id');
+ 
+
+    $invoiceDetail = \DB::table('invoice_details')
+                        ->select(\DB::raw('SUM(quantity) as quantity'),\DB::raw('SUM(total_price) as total_price'), DB::raw('product_id as product_id'))
+                        // ->get()
+                        ->whereIn('invoice_id',$invoicesId)
+                        ->groupBy('product_id')
+                        // ->select(\DB::raw('SUM(quantity) as quantity'),\DB::raw('SUM(total_price) as total_price'))
+
+                        ->get();
+
+                       
+
+         
+                        // return $invoiceDetail;
+
+                        $invoiceDetail = DB::table("invoice_details")
+                        ->whereIn('invoice_id',$invoicesId)
+                        ->groupBy(DB::raw("product_id"))
+                        ->get(
+                            array(
+                                DB::raw('SUM(quantity) as quantity'),
+                                DB::raw('SUM(total_price) as total_price'),
+                                DB::raw('product_id as product_id'),
+                              )
+                        )->toArray();
+
+
+                   $newCollection = [];     
+
+
+                   for($i = 0; $i < count($invoiceDetail) ; $i++){
+                    //    return $invoiceDetail[$i]->quantity;
+                    $newCollection[$i]['name'] = product::find($invoiceDetail[$i]->product_id)->product_name;
+                    $newCollection[$i]['quantity'] = $invoiceDetail[$i]->quantity;
+                    $newCollection[$i]['total_price'] = $invoiceDetail[$i]->total_price;
+                   }     
+  
+                    
+                    return $newCollection;
+   
+
+      
+        return view('admin.report.product-wise-sales',get_defined_vars());
 
     }
 

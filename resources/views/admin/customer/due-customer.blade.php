@@ -75,7 +75,7 @@
 
                 </tbody>
             </table>
-           {{$customer_info->links()}}
+          
             </div>
             </div>
           </div>

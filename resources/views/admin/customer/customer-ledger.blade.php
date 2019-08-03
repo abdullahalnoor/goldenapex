@@ -172,7 +172,8 @@
         var printContents = document.getElementById(divName).innerHTML;
         var originalContents = document.body.innerHTML;
         document.body.innerHTML = printContents;
-        document.body.style.marginTop="-45px";
+        document.body.style.marginTop="100px";
+        document.body.style.padding="10px";
         window.print();
         document.body.innerHTML = originalContents;
     }
